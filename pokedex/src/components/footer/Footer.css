@@ -1,4 +1,9 @@
 .footer {
-	height: 10vh;
-	background-color: lightcoral;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.footer-container {
+	background-color: #ffcccb;
 }

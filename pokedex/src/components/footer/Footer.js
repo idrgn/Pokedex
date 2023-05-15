@@ -1,13 +1,28 @@
-import { Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
 
 import "./Footer.css";
 
-export const Footer = () => {
+export function Footer() {
 	return (
-		<footer>
-			<Typography variant="body2" color="textSecondary" className="footer">
-				Pokedex footer
-			</Typography>
-		</footer>
+		<Box className="footer">
+			<Box
+				className="footer-container"
+				component="footer"
+				sx={{
+					py: 3,
+					px: 1,
+					mt: "auto",
+				}}
+			>
+				<Container maxWidth="100%">
+					<Typography variant="body1">Pokedex</Typography>
+					<Typography variant="body2" color="text.secondary">
+						Miguel Díaz
+					</Typography>
+				</Container>
+			</Box>
+		</Box>
 	);
-};
+}
