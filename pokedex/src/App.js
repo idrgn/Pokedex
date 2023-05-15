@@ -7,10 +7,12 @@ import "./App.css";
 
 function App() {
 	return (
-		<Routes>
-			<Route path="" element={<MainPage />}></Route>
-			<Route path="*" element={<NotFound />}></Route>
-		</Routes>
+		<div className="container">
+			<Routes>
+				<Route path="" element={<MainPage />}></Route>
+				<Route path="*" element={<NotFound />}></Route>
+			</Routes>
+		</div>
 	);
 }
 
