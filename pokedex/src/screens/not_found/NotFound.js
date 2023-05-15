@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
  * @param {*} props
  * @returns
  */
-const NotFound = (props) => {
+export const NotFound = (props) => {
 	return (
 		<div>
 			<h1>404 - No encontrado :(</h1>
@@ -13,5 +13,3 @@ const NotFound = (props) => {
 		</div>
 	);
 };
-
-export default NotFound;
