@@ -39,7 +39,7 @@ export const Header = () => {
 				<Stack direction="row" spacing={2} sx={{ display: { xs: "none", md: "flex" } }}>
 					{pages.map((page) => (
 						<NavLink to={page.url} style={{ textDecoration: "inherit", color: "inherit" }}>
-							<Button key={page.name} sx={{ my: 2, color: "white", display: "block" }}>
+							<Button key={page.name} sx={{ my: 2, color: "inherit", display: "block" }}>
 								{page.name}
 							</Button>
 						</NavLink>
