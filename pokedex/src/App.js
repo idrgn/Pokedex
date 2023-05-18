@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { Account } from "./screens/account/Account";
 import { Items } from "./screens/items/Items";
-import { MainPage } from "./screens/main_page/MainPage";
+// import { MainPage } from "./screens/main_page/MainPage";
 import { Moves } from "./screens/moves/Moves";
 import { NotFound } from "./screens/not_found/NotFound";
 import { Pokemons } from "./screens/pokemons/Pokemons";
@@ -14,7 +14,7 @@ function App() {
 		<div className="main-container">
 			<div className="page-container">
 				<Routes>
-					<Route path="" element={<MainPage />}></Route>
+					<Route path="" element={<Pokemons />}></Route>
 					<Route path="/pokemons" element={<Pokemons />}></Route>
 					<Route path="/items" element={<Items />}></Route>
 					<Route path="/moves" element={<Moves />}></Route>
