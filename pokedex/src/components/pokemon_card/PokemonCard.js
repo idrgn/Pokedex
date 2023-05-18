@@ -1,7 +1,6 @@
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 
 export const PokemonCard = (props) => {
-	console.log("Rendering pokemon card");
 	return (
 		<Card>
 			<CardContent>

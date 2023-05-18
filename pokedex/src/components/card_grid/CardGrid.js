@@ -13,8 +13,6 @@ export const CardGrid = (props) => {
 };
 
 const pokemonGrid = (pokemonData) => {
-	console.log(JSON.stringify(pokemonData));
-
 	return (
 		<Grid container rowSpacing={{ xs: 1, sm: 2, md: 3 }} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
 			{pokemonData.map((p) => (

@@ -18,7 +18,6 @@ export const Pokemons = () => {
 		if (pokemonData === null) return;
 
 		for (let entry of pokemonData.results.slice(currentIndex, currentIndex + 10)) {
-			console.log("Processing: " + entry.url);
 			axios.get(entry.url).then((response) => {
 				setProcessedPokemonList((prevList) => prevList.concat(response.data));
 			});
