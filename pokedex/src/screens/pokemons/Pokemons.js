@@ -2,9 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { api_pokemon } from "../../API";
 import { CardGrid, GridTypes } from "../../components/card_grid/CardGrid";
+import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
 
 export const Pokemons = () => {
 	const amountPerPage = 20;
+
+	const [isDataLoaded, setIsDataLoaded] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [pokemonData, setPokemonData] = useState(null);
 	const [processedPokemonList, setProcessedPokemonList] = useState([]);
@@ -12,6 +15,7 @@ export const Pokemons = () => {
 	useEffect(() => {
 		axios.get(`${api_pokemon}pokemon?limit=100000&offset=0`).then((response) => {
 			setPokemonData(response.data);
+			setIsDataLoaded(true);
 		});
 	}, []);
 
@@ -23,14 +27,17 @@ export const Pokemons = () => {
 				setProcessedPokemonList((prevList) => prevList.concat(response.data));
 			});
 		}
-
-		// setCurrentIndex((prevIndex) => prevIndex + amountPerPage);
 	}, [currentIndex, pokemonData]);
+
+	const onScroll = () => {
+		setCurrentIndex((prevIndex) => prevIndex + amountPerPage);
+	};
 
 	return (
 		<div>
 			<h1>Lista de Pokémons</h1>
 			<CardGrid pokemonData={processedPokemonList} type={GridTypes.Pokemon}></CardGrid>
+			{isDataLoaded ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
 		</div>
 	);
 };

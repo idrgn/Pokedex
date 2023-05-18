@@ -14,7 +14,7 @@ function App() {
 		<div className="main-container">
 			<div className="page-container">
 				<Routes>
-					<Route path="" element={<Pokemons />}></Route>
+					<Route path="" element={<MainPage />}></Route>
 					<Route path="/pokemons" element={<Pokemons />}></Route>
 					<Route path="/items" element={<Items />}></Route>
 					<Route path="/moves" element={<Moves />}></Route>
