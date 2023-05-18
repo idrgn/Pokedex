@@ -5,7 +5,7 @@ import "./PokemonCard.css";
 
 export const PokemonCard = (props) => {
 	return (
-		<Card sx={{ width: "200px", height: "200px", alignItems: "center" }} className="pokemon-card">
+		<Card sx={{ width: "200px", height: "200px", alignItems: "center", borderRadius: "10%" }} variant="outlined" className="pokemon-card">
 			<CardContent>
 				<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
 					Nº {props.pokemon.id}
