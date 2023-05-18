@@ -2,6 +2,15 @@ import "./Header.css";
 
 import { CatchingPokemonTwoTone } from "@mui/icons-material";
 import { AppBar, Button, IconButton, Stack, Toolbar, Typography } from "@mui/material";
+import { NavLink } from "react-router-dom";
+
+const pages = [
+	{ name: "Inicio", url: "/" },
+	{ name: "Pokémon", url: "/pokemons" },
+	{ name: "Movimientos", url: "/moves" },
+	{ name: "Objetos", url: "/items" },
+	{ name: "Cuenta", url: "/account" },
+];
 
 export const Header = () => {
 	return (
@@ -14,9 +23,13 @@ export const Header = () => {
 					Pokedex
 				</Typography>
 				<Stack direction="row" spacing={2}>
-					<Button color="inherit">Inicio</Button>
-					<Button color="inherit">Pokedex</Button>
-					<Button color="inherit">Iniciar Sesión</Button>
+					{pages.map((page) => (
+						<NavLink to={page.url} style={{ textDecoration: "inherit", color: "inherit" }}>
+							<Button key={page.name} sx={{ my: 2, color: "white", display: "block" }}>
+								{page.name}
+							</Button>
+						</NavLink>
+					))}
 				</Stack>
 			</Toolbar>
 		</AppBar>
