@@ -3,7 +3,7 @@ import { capitalizeFirstLetter } from "../../Helper";
 
 export const PokemonCard = (props) => {
 	return (
-		<Card>
+		<Card sx={{ width: "250px", height: "250px", alignItems: "center" }}>
 			<CardContent>
 				<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
 					Nº {props.pokemon.id}
@@ -11,7 +11,7 @@ export const PokemonCard = (props) => {
 				<Typography variant="h5" component="div">
 					{capitalizeFirstLetter(props.pokemon.name)}
 				</Typography>
-				<CardMedia component="img" height="75" width="75" image={getBestSprite(props.pokemon.sprites)} alt={props.pokemon.name} sx={{ padding: "1em 1em 0 1em", objectFit: "contain" }} />
+				<CardMedia component="img" height="100" width="100" image={getBestSprite(props.pokemon.sprites)} alt={props.pokemon.name} sx={{ padding: "1.75em 1em 0 1em", objectFit: "contain" }} />
 			</CardContent>
 		</Card>
 	);
