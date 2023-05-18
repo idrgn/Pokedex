@@ -24,7 +24,7 @@ export const Pokemons = () => {
 
 		for (let entry of pokemonData.results.slice(currentIndex, currentIndex + amountPerPage)) {
 			axios.get(entry.url).then((response) => {
-				setProcessedPokemonList((prevList) => prevList.concat(response.data));
+				setProcessedPokemonList((prevList) => prevList.concat(response.data).sort((a, b) => (a.id > b.id ? 1 : -1)));
 			});
 		}
 	}, [currentIndex, pokemonData]);
