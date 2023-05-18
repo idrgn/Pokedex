@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 
 const pages = [
 	{ name: "Inicio", url: "/" },
-	{ name: "Pokémon", url: "/pokemons" },
+	{ name: "Pokémons", url: "/pokemons" },
 	{ name: "Movimientos", url: "/moves" },
 	{ name: "Objetos", url: "/items" },
 	{ name: "Cuenta", url: "/account" },
