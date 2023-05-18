@@ -24,7 +24,9 @@ const getBestSprite = (sprites) => {
 			for (let gameName in generation) {
 				const game = generation[gameName];
 				if (game.hasOwnProperty("animated")) {
-					return game.animated.front_default;
+					if (game.animated.front_default !== null) {
+						return game.animated.front_default;
+					}
 				}
 			}
 		}
