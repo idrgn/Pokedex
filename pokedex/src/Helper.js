@@ -3,11 +3,27 @@ export function capitalizeFirstLetter(string) {
 }
 
 export function customConcat(list, element) {
-	if (!list.includes(element)) {
-		return list.concat(element).sort((a, b) => (a.id > b.id ? 1 : -1));
-	} else {
-		return list;
+	return sortAndRemoveDuplicates(list.concat(element));
+}
+
+export function sortAndRemoveDuplicates(list) {
+	return removeDuplicateObjects(list, "id").sort((a, b) => (a.id > b.id ? 1 : -1));
+}
+
+export function removeDuplicateObjects(list, property) {
+	const uniqueList = [];
+	const keys = new Set();
+
+	for (const item of list) {
+		const keyValue = item[property];
+
+		if (!keys.has(keyValue)) {
+			keys.add(keyValue);
+			uniqueList.push(item);
+		}
 	}
+
+	return uniqueList;
 }
 
 export const getBestSprite = (sprites) => {
