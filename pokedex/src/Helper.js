@@ -26,3 +26,18 @@ export const getBestSprite = (sprites) => {
 	}
 	return sprites.front_default;
 };
+
+export const getFlavorText = (flavor) => {
+	let spanish = null;
+	let english = null;
+
+	for (let entry of flavor) {
+		if (entry.language.name === "es") spanish = entry.flavor_text;
+		else if (entry.language.name === "en") english = entry.flavor_text;
+		if (spanish != null && english != null) break;
+	}
+
+	if (spanish != null) return spanish;
+	if (english != null) return english;
+	return "Descripción desconocida...";
+};
