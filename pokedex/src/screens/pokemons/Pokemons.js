@@ -60,7 +60,7 @@ export const Pokemons = () => {
 	};
 
 	return (
-		<div>
+		<div id="pokedex-list-main-container">
 			<h1 id="listado-pokemon-titulo">Listado de Pokémons</h1>
 			<div id="controles-pokemon">
 				<FormControlLabel control={<Switch checked={loadGifs} onChange={loadGifsChanged} name="loadgif" />} label="Cargar imágenes animadas" />
