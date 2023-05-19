@@ -15,8 +15,6 @@ export const ScrollToElement = (props) => {
 				if (entry.isIntersecting) {
 					if (props.hasOwnProperty("onScrollToElement")) {
 						props.onScrollToElement();
-					} else {
-						console.log("Scrolled - No function assigned");
 					}
 				}
 			});
