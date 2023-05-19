@@ -4,9 +4,9 @@ import { api_pokemon } from "../../API";
 import { customConcat } from "../../Helper";
 import { GridTypes, PokemonGrid } from "../../components/card_grid/CardGrid";
 import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
+import { PokemonDetail } from "../../components/pokemon_detail/PokemonDetail";
 
 import "./Pokemons.css";
-import { PokemonDetail } from "../../components/pokemon_detail/PokemonDetail";
 
 export const Pokemons = () => {
 	const amountPerPage = 20;
@@ -15,8 +15,10 @@ export const Pokemons = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [pokemonData, setPokemonData] = useState(null);
 	const [selectedPokemon, setSelectedPokemon] = useState(null);
+	const [selectedPokemonDetail, setSelectedPokemonDetail] = useState(null);
 	const [processedPokemonList, setProcessedPokemonList] = useState([]);
 
+	// Obtener la lista de Pokémon al cargar la página
 	useEffect(() => {
 		axios.get(`${api_pokemon}pokemon?limit=100000&offset=0`).then((response) => {
 			setPokemonData(response.data);
@@ -24,6 +26,7 @@ export const Pokemons = () => {
 		});
 	}, []);
 
+	// Cargar nuevos Pokémon al cambiar de índice
 	useEffect(() => {
 		if (pokemonData === null) return;
 
@@ -34,12 +37,19 @@ export const Pokemons = () => {
 		}
 	}, [currentIndex, pokemonData]);
 
+	// Evento que se ejecuta cuando el usuario llega al fondo de la lista
 	const onScroll = () => {
 		setCurrentIndex((prevIndex) => prevIndex + amountPerPage);
 	};
 
+	// Evento que se ejecuta cuando cambia el Pokémon seleccionado
 	const onSelectionChanged = (p) => {
 		setSelectedPokemon(p);
+		setSelectedPokemonDetail(null);
+
+		axios.get(`${api_pokemon}pokemon-species/${p.id}`).then((response) => {
+			setSelectedPokemonDetail(response.data);
+		});
 	};
 
 	return (
@@ -56,7 +66,7 @@ export const Pokemons = () => {
 					</div>
 				</div>
 				<div id="contenedor-detalle">
-					<PokemonDetail pokemon={selectedPokemon} />
+					<PokemonDetail pokemon={selectedPokemon} detail={selectedPokemonDetail} />
 				</div>
 			</div>
 		</div>
