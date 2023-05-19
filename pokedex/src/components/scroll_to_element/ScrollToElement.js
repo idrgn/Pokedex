@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 
+import "./ScrollToElement.css";
+
 export const ScrollToElement = (props) => {
 	const targetRef = useRef(null);
 
@@ -33,5 +35,5 @@ export const ScrollToElement = (props) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	return <div ref={targetRef}></div>;
+	return <div ref={targetRef} className="scroll-to-element"></div>;
 };

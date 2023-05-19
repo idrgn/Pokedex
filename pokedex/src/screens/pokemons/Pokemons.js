@@ -5,6 +5,8 @@ import { customConcat } from "../../Helper";
 import { CardGrid, GridTypes } from "../../components/card_grid/CardGrid";
 import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
 
+import "./Pokemons.css";
+
 export const Pokemons = () => {
 	const amountPerPage = 20;
 
@@ -37,8 +39,18 @@ export const Pokemons = () => {
 	return (
 		<div>
 			<h1>Lista de Pokémons</h1>
-			<CardGrid pokemonData={processedPokemonList} type={GridTypes.Pokemon}></CardGrid>
-			{isDataLoaded ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
+			<div id="contenedor-listado-detalle">
+				<div id="contenedor-lista-wrapper">
+					<div id="contenedor-lista">
+						<div id="lista-pokemon">
+							<div id="lista-small-padding"></div>
+							<CardGrid pokemonData={processedPokemonList} type={GridTypes.Pokemon}></CardGrid>
+							{isDataLoaded ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
+						</div>
+					</div>
+				</div>
+				<div id="contenedor-detalle"></div>
+			</div>
 		</div>
 	);
 };
