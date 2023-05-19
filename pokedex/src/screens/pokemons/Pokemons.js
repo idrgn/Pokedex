@@ -2,10 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { api_pokemon } from "../../API";
 import { customConcat } from "../../Helper";
-import { CardGrid, GridTypes } from "../../components/card_grid/CardGrid";
+import { CardGrid, GridTypes, PokemonGrid } from "../../components/card_grid/CardGrid";
 import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
 
 import "./Pokemons.css";
+import { PokemonDetail } from "../../components/pokemon_detail/PokemonDetail";
 
 export const Pokemons = () => {
 	const amountPerPage = 20;
@@ -13,6 +14,7 @@ export const Pokemons = () => {
 	const [isDataLoaded, setIsDataLoaded] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [pokemonData, setPokemonData] = useState(null);
+	const [selectedPokemon, setSelectedPokemon] = useState(null);
 	const [processedPokemonList, setProcessedPokemonList] = useState([]);
 
 	useEffect(() => {
@@ -36,6 +38,10 @@ export const Pokemons = () => {
 		setCurrentIndex((prevIndex) => prevIndex + amountPerPage);
 	};
 
+	const onSelectionChanged = (p) => {
+		setSelectedPokemon(p);
+	};
+
 	return (
 		<div>
 			<h1>Lista de Pokémons</h1>
@@ -44,12 +50,14 @@ export const Pokemons = () => {
 					<div id="contenedor-lista">
 						<div id="lista-pokemon">
 							<div id="lista-small-padding"></div>
-							<CardGrid pokemonData={processedPokemonList} type={GridTypes.Pokemon}></CardGrid>
+							<PokemonGrid onSelectionChanged={onSelectionChanged} pokemonData={processedPokemonList} type={GridTypes.Pokemon}></PokemonGrid>
 							{isDataLoaded ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
 						</div>
 					</div>
 				</div>
-				<div id="contenedor-detalle"></div>
+				<div id="contenedor-detalle">
+					<PokemonDetail pokemon={selectedPokemon} />
+				</div>
 			</div>
 		</div>
 	);

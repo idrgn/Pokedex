@@ -9,21 +9,22 @@ export const GridTypes = {
 };
 
 export const CardGrid = (props) => {
-	if (props.type === GridTypes.Pokemon) return PokemonGrid(props.pokemonData);
+	if (props.type === GridTypes.Pokemon) return PokemonGrid(props);
 	else return <></>;
 };
 
-export const PokemonGrid = (pokemonData) => {
+export const PokemonGrid = (props) => {
 	const [selected, setSelected] = useState(null);
 
-	const onSelect = (id) => {
-		setSelected(id);
+	const onSelect = (p) => {
+		setSelected(p.id);
+		props.onSelectionChanged(p);
 	};
 
 	return (
 		<Grid container rowSpacing={{ xs: 1, sm: 2, md: 3 }} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ display: "flex", justifyContent: "center" }}>
-			{pokemonData.map((p) => (
-				<Grid item onClick={() => onSelect(p.id)}>
+			{props.pokemonData.map((p) => (
+				<Grid item onClick={() => onSelect(p)}>
 					<PokemonCard pokemon={p} selected={p.id === selected}></PokemonCard>
 				</Grid>
 			))}
