@@ -28,7 +28,7 @@ span.type.normal:after {
 }
 
 span.type.normal.sm:after {
-	content: "Nor";
+	content: "No";
 }
 
 span.type.fire {
@@ -37,11 +37,11 @@ span.type.fire {
 }
 
 span.type.fire:after {
-	content: "Fire";
+	content: "Fuego";
 }
 
 span.type.fire.sm:after {
-	content: "Fir";
+	content: "Fu";
 }
 
 span.type.water {
@@ -50,11 +50,11 @@ span.type.water {
 }
 
 span.type.water:after {
-	content: "Water";
+	content: "Agua";
 }
 
 span.type.water.sm:after {
-	content: "Wat";
+	content: "Ag";
 }
 
 span.type.electric {
@@ -63,11 +63,11 @@ span.type.electric {
 }
 
 span.type.electric:after {
-	content: "Electric";
+	content: "Eléctrico";
 }
 
 span.type.electric.sm:after {
-	content: "Ele";
+	content: "El";
 }
 
 span.type.grass {
@@ -76,11 +76,11 @@ span.type.grass {
 }
 
 span.type.grass:after {
-	content: "Grass";
+	content: "Planta";
 }
 
 span.type.grass.sm:after {
-	content: "Gra";
+	content: "Pl";
 }
 
 span.type.ice {
@@ -89,7 +89,11 @@ span.type.ice {
 }
 
 span.type.ice:after {
-	content: "Ice";
+	content: "Hielo";
+}
+
+span.type.grass.sm:after {
+	content: "Hi";
 }
 
 span.type.fighting {
@@ -98,11 +102,11 @@ span.type.fighting {
 }
 
 span.type.fighting:after {
-	content: "Fighting";
+	content: "Lucha";
 }
 
 span.type.fighting.sm:after {
-	content: "Fig";
+	content: "Lu";
 }
 
 span.type.poison {
@@ -111,11 +115,11 @@ span.type.poison {
 }
 
 span.type.poison:after {
-	content: "Poison";
+	content: "Veneno";
 }
 
 span.type.poison.sm:after {
-	content: "Poi";
+	content: "Ve";
 }
 
 span.type.ground {
@@ -124,11 +128,11 @@ span.type.ground {
 }
 
 span.type.ground:after {
-	content: "Ground";
+	content: "Tierra";
 }
 
 span.type.ground.sm:after {
-	content: "Gro";
+	content: "Ti";
 }
 
 span.type.flying {
@@ -137,11 +141,11 @@ span.type.flying {
 }
 
 span.type.flying:after {
-	content: "Flying";
+	content: "Volador";
 }
 
 span.type.flying.sm:after {
-	content: "Fly";
+	content: "Vo";
 }
 
 span.type.psychic {
@@ -150,11 +154,11 @@ span.type.psychic {
 }
 
 span.type.psychic:after {
-	content: "Psychic";
+	content: "Psíquico";
 }
 
 span.type.psychic.sm:after {
-	content: "Psy";
+	content: "Ps";
 }
 
 span.type.bug {
@@ -163,7 +167,11 @@ span.type.bug {
 }
 
 span.type.bug:after {
-	content: "Bug";
+	content: "Bicho";
+}
+
+span.type.bug.sm:after {
+	content: "Bi";
 }
 
 span.type.rock {
@@ -172,11 +180,11 @@ span.type.rock {
 }
 
 span.type.rock:after {
-	content: "Rock";
+	content: "Roca";
 }
 
 span.type.rock.sm:after {
-	content: "Roc";
+	content: "Ro";
 }
 
 span.type.ghost {
@@ -185,11 +193,11 @@ span.type.ghost {
 }
 
 span.type.ghost:after {
-	content: "Ghost";
+	content: "Fantasma";
 }
 
 span.type.ghost.sm:after {
-	content: "Gho";
+	content: "Fa";
 }
 
 span.type.dragon {
@@ -198,11 +206,11 @@ span.type.dragon {
 }
 
 span.type.dragon:after {
-	content: "Dragon";
+	content: "Dragón";
 }
 
 span.type.dragon.sm:after {
-	content: "Dra";
+	content: "Dr";
 }
 
 span.type.dark {
@@ -211,11 +219,11 @@ span.type.dark {
 }
 
 span.type.dark:after {
-	content: "Dark";
+	content: "Siniestro";
 }
 
 span.type.dark.sm:after {
-	content: "Dar";
+	content: "Si";
 }
 
 span.type.steel {
@@ -224,11 +232,11 @@ span.type.steel {
 }
 
 span.type.steel:after {
-	content: "Steel";
+	content: "Acero";
 }
 
 span.type.steel.sm:after {
-	content: "Ste";
+	content: "Ac";
 }
 
 span.type.fairy {
@@ -237,9 +245,9 @@ span.type.fairy {
 }
 
 span.type.fairy:after {
-	content: "Fairy";
+	content: "Hada";
 }
 
 span.type.fairy.sm:after {
-	content: "Fai";
+	content: "Ha";
 }
