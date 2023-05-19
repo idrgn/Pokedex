@@ -1,3 +1,8 @@
+#listado-pokemon-titulo {
+	text-align: center;
+	margin-top: 50px;
+}
+
 #contenedor-pantalla-pokemon {
 	width: 100%;
 }
@@ -39,6 +44,13 @@
 	height: 100%;
 	margin: 0em;
 	overflow-y: auto;
+}
+
+#controles-pokemon {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding: 20px;
 }
 
 @media screen and (max-width: 480px) {

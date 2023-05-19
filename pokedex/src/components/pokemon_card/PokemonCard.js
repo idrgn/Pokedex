@@ -15,7 +15,7 @@ export const PokemonCard = (props) => {
 					{capitalizeFirstLetter(props.pokemon.name)}
 				</Typography>
 			</CardContent>
-			<CardMedia component="img" height="75" width="75" image={getBestSprite(props.pokemon.sprites)} alt={props.pokemon.name} sx={{ paddingTop: "0.25em", objectFit: "contain" }} />
+			<CardMedia component="img" height="75" width="75" image={props.animated ? getBestSprite(props.pokemon.sprites) : props.pokemon.sprites.front_default} alt={props.pokemon.name} sx={{ paddingTop: "0.25em", objectFit: "contain" }} />
 			<CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
 				{props.pokemon.types.map((t) => (
 					<PokemonType type={t.type.name}></PokemonType>

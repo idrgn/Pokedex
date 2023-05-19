@@ -25,7 +25,7 @@ export const PokemonGrid = (props) => {
 		<Grid container rowSpacing={{ xs: 1, sm: 2, md: 3 }} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ display: "flex", justifyContent: "center" }}>
 			{props.pokemonData.map((p) => (
 				<Grid item onClick={() => onSelect(p)}>
-					<PokemonCard pokemon={p} selected={p.id === selected}></PokemonCard>
+					<PokemonCard pokemon={p} selected={p.id === selected} animated={props.animated}></PokemonCard>
 				</Grid>
 			))}
 		</Grid>
