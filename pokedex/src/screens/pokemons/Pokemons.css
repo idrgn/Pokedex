@@ -9,6 +9,7 @@
 }
 
 #contenedor-lista-wrapper {
+	background-color: #ffffff;
 	width: 65%;
 }
 
@@ -38,4 +39,23 @@
 	height: 100%;
 	margin: 0em;
 	overflow-y: auto;
+}
+
+@media screen and (max-width: 480px) {
+	#contenedor-listado-detalle {
+		display: flex;
+		flex-direction: column;
+	}
+
+	#contenedor-lista-wrapper {
+		order: 2;
+		width: 95%;
+		margin-bottom: 15px;
+	}
+
+	#contenedor-detalle {
+		order: 1;
+		width: 95%;
+		margin-bottom: 15px;
+	}
 }
