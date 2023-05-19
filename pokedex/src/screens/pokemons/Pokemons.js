@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { api_pokemon } from "../../API";
 import { customConcat } from "../../Helper";
-import { CardGrid, GridTypes, PokemonGrid } from "../../components/card_grid/CardGrid";
+import { GridTypes, PokemonGrid } from "../../components/card_grid/CardGrid";
 import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
 
 import "./Pokemons.css";
