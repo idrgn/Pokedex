@@ -4,7 +4,15 @@ import { capitalizeFirstLetter, getBestSprite, getFlavorText } from "../../Helpe
 import "./PokemonDetail.css";
 
 export const PokemonDetail = (props) => {
-	if (props.pokemon === null || props.detail === null) return <></>;
+	if (props.pokemon === null || props.detail === null) {
+		return (
+			<Card sx={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-around", justifyItems: "space-around" }}>
+				<Typography sx={{ textAlign: "center", padding: "20px" }} variant="h4">
+					Selecciona un Pokémon para ver sus detalles
+				</Typography>
+			</Card>
+		);
+	}
 
 	return (
 		<Card sx={{ height: "100%" }}>
