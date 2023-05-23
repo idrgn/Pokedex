@@ -21,7 +21,8 @@
 
 .contenedor-detalle {
 	width: 30%;
-	height: 80vh;
+	min-height: 80vh;
+	height: 100%;
 }
 
 .contenedor-lista-wrapper,

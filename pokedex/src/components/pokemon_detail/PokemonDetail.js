@@ -8,7 +8,7 @@ import "./PokemonDetail.css";
 export const PokemonDetail = (props) => {
 	if (props.pokemon === null || props.detail === null) {
 		return (
-			<Card sx={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-around", justifyItems: "space-around" }}>
+			<Card sx={{ height: "100%", minHeight: "80vh", display: "flex", flexDirection: "column", justifyContent: "space-around", justifyItems: "space-around" }}>
 				<Typography sx={{ textAlign: "center", padding: "20px" }} variant="h4">
 					Selecciona un Pokémon para ver sus detalles
 				</Typography>
@@ -17,7 +17,7 @@ export const PokemonDetail = (props) => {
 	}
 
 	return (
-		<Card sx={{ height: "100%", backgroundColor: getLightColor(props.detail.color.name) }}>
+		<Card sx={{ height: "100%", minHeight: "80vh", backgroundColor: getLightColor(props.detail.color.name), display: "flex", flexDirection: "column", justifyContent: "space-around" }}>
 			<CardContent>
 				<Box sx={{ display: "flex", justifyContent: "space-around", marginBottom: "20px", marginTop: "30px" }}>
 					<CardMedia sx={{ height: "35%", width: "35%" }} component="img" image={getBestSprite(props.pokemon.sprites)} alt="Paella dish" />

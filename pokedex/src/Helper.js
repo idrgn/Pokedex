@@ -79,5 +79,9 @@ export const getLightColor = (name) => {
 	const baseColor = tinycolor(name);
 	let lighterColor = tinycolor.mix(baseColor, "white", 80);
 
+	if (lighterColor.toRgbString() === tinycolor("white").toRgbString()) {
+		lighterColor = tinycolor("lightgray");
+	}
+
 	return lighterColor.toString();
 };

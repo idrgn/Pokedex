@@ -1,4 +1,4 @@
-import { Box, Tooltip } from "@mui/material";
+import { Box, Tooltip, Typography } from "@mui/material";
 
 import "./PokemonStats.css";
 
@@ -25,10 +25,10 @@ export const PokemonStats = (props) => {
 		<Box className="all-stat-container">
 			{props.stats.map((s) => (
 				<Tooltip title={getStatName(s.stat.name)} placement="top">
-					<div className="single-stat-container">
-						<span className="stat-single">{s.base_stat}</span>
-						<span>{getShortStatName(s.stat.name)}</span>
-					</div>
+					<Box className="single-stat-container">
+						<Typography className="stat-single">{s.base_stat}</Typography>
+						<Typography variant="overline">{getShortStatName(s.stat.name)}</Typography>
+					</Box>
 				</Tooltip>
 			))}
 		</Box>
