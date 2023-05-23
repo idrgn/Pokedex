@@ -1,4 +1,12 @@
 .pokemon-card {
 	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-	border-radius: 5%;
+	width: 200px;
+	height: 225px;
+	align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+	.pokemon-card {
+		width: 90%;
+	}
 }
