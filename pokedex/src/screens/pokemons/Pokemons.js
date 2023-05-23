@@ -52,7 +52,6 @@ export const Pokemons = () => {
 	// Evento que se ejecuta cuando cambia el Pokémon seleccionado
 	const onSelectionChanged = (p) => {
 		setSelectedPokemon(p);
-		setSelectedPokemonDetail(null);
 
 		axios.get(`${api_pokemon}pokemon-species/${p.id}`).then((response) => {
 			setSelectedPokemonDetail(response.data);
@@ -60,22 +59,22 @@ export const Pokemons = () => {
 	};
 
 	return (
-		<div id="pokedex-list-main-container">
-			<h1 id="listado-pokemon-titulo">Listado de Pokémons</h1>
-			<div id="controles-pokemon">
+		<div className="pokedex-list-main-container">
+			<h1 className="listado-pokemon-titulo">Listado de Pokémons</h1>
+			<div className="controles-pokemon">
 				<FormControlLabel control={<Switch checked={loadGifs} onChange={loadGifsChanged} name="loadgif" />} label="Cargar imágenes animadas" />
 			</div>
-			<div id="contenedor-listado-detalle">
-				<div id="contenedor-lista-wrapper">
-					<div id="contenedor-lista">
-						<div id="lista-pokemon">
-							<div id="lista-small-padding"></div>
+			<div className="contenedor-listado-detalle">
+				<div className="contenedor-lista-wrapper">
+					<div className="contenedor-lista">
+						<div className="lista-pokemon">
+							<div className="lista-small-padding"></div>
 							<PokemonGrid onSelectionChanged={onSelectionChanged} pokemonData={processedPokemonList} animated={loadGifs}></PokemonGrid>
 							{isDataLoaded ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
 						</div>
 					</div>
 				</div>
-				<div id="contenedor-detalle">
+				<div className="contenedor-detalle">
 					<PokemonDetail pokemon={selectedPokemon} detail={selectedPokemonDetail} />
 				</div>
 			</div>
