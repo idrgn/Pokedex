@@ -12,7 +12,6 @@ const pages = [
 	{ name: "Pokémons", url: "/pokemons" },
 	{ name: "Movimientos", url: "/moves" },
 	{ name: "Objetos", url: "/items" },
-	{ name: "Cuenta", url: "/account" },
 ];
 
 export const Header = () => {
