@@ -17,7 +17,7 @@ export const PokemonDetail = (props) => {
 	}
 
 	return (
-		<Card sx={{ height: "100%", minHeight: "80vh", backgroundColor: getLightColor(props.detail.color.name), display: "flex", flexDirection: "column", justifyContent: "space-around" }}>
+		<Card sx={{ height: "100%", minHeight: "80vh", backgroundColor: getLightColor(props.detail.color.name), display: "flex", flexDirection: "column", justifyContent: "space-around", transition: "background-color 0.5s" }}>
 			<CardContent>
 				<Box sx={{ display: "flex", justifyContent: "space-around", marginBottom: "20px", marginTop: "30px" }}>
 					<CardMedia sx={{ height: "35%", width: "35%" }} component="img" image={getBestSprite(props.pokemon.sprites)} alt="Paella dish" />

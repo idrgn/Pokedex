@@ -6,7 +6,7 @@ import "./PokemonCard.css";
 
 export const PokemonCard = (props) => {
 	return (
-		<Card sx={{ borderRadius: "10px" }} variant="outlined" className="pokemon-card" style={{ backgroundColor: props.selected ? "lightblue" : "azure" }}>
+		<Card sx={{ borderRadius: "10px" }} variant="outlined" className="pokemon-card" style={{ backgroundColor: props.selected ? "lightblue" : "azure", transition: "background-color 0.5s" }}>
 			<CardContent>
 				<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
 					Nº {props.pokemon.id}
