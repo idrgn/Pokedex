@@ -21,7 +21,7 @@ export const Pokemons = () => {
 	const [selectedPokemon, setSelectedPokemon] = useState(null);
 	const [selectedPokemonDetail, setSelectedPokemonDetail] = useState(null);
 	const [processedPokemonList, setProcessedPokemonList] = useState([]);
-
+	const [, setUnprocessedList] = useState([]);
 	const [searchValue, setSearchValue] = useState(null);
 	const [searchInputValue, setSearchInputValue] = useState("");
 
@@ -30,9 +30,16 @@ export const Pokemons = () => {
 
 		for (let entry of data.results.slice(index, index + amountPerPage)) {
 			requests.push(
-				axios.get(entry.url).then((response) => {
-					setProcessedPokemonList((prevList) => customConcat(prevList, response.data));
-				})
+				axios
+					.get(entry.url)
+					.then((response) => {
+						if (response.status === 200) {
+							setProcessedPokemonList((prevList) => customConcat(prevList, response.data));
+						}
+					})
+					.catch((error) => {
+						setUnprocessedList((prevList) => customConcat(prevList, entry.url));
+					})
 			);
 		}
 
@@ -47,21 +54,28 @@ export const Pokemons = () => {
 
 	// Obtener la lista de Pokémon al cargar la página
 	useEffect(() => {
-		axios.get(`${api_pokemon}pokemon?limit=100000&offset=0`).then((response) => {
-			setPokemonData(response.data);
+		axios
+			.get(`${api_pokemon}pokemon?limit=100000&offset=0`)
+			.then((response) => {
+				if (response.status === 200) {
+					setPokemonData(response.data);
 
-			setAutocompleteData(
-				response.data.results.map((p) => {
-					const pokemonId = p.url.split("/pokemon/")[1].slice(0, -1);
-					return {
-						label: `${pokemonId} - ${capitalizeFirstLetter(p.name)}`,
-						id: pokemonId,
-					};
-				})
-			);
+					setAutocompleteData(
+						response.data.results.map((p) => {
+							const pokemonId = p.url.split("/pokemon/")[1].slice(0, -1);
+							return {
+								label: `${pokemonId} - ${capitalizeFirstLetter(p.name)}`,
+								id: pokemonId,
+							};
+						})
+					);
 
-			setIsDataLoaded(true);
-		});
+					setIsDataLoaded(true);
+				}
+			})
+			.catch((error) => {
+				setPokemonData([]);
+			});
 	}, []);
 
 	// Cargar nuevos Pokémon al cambiar de índice
@@ -74,13 +88,27 @@ export const Pokemons = () => {
 	useEffect(() => {
 		if (searchValue === null) return;
 
-		axios.get(`${api_pokemon}pokemon/${searchValue.id}`).then((response) => {
-			setSelectedPokemon(response.data);
-		});
+		axios
+			.get(`${api_pokemon}pokemon/${searchValue.id}`)
+			.then((response) => {
+				if (response.status === 200) {
+					setSelectedPokemon(response.data);
+				}
+			})
+			.catch((error) => {
+				setSelectedPokemon(null);
+			});
 
-		axios.get(`${api_pokemon}pokemon-species/${searchValue.id}`).then((response) => {
-			setSelectedPokemonDetail(response.data);
-		});
+		axios
+			.get(`${api_pokemon}pokemon-species/${searchValue.id}`)
+			.then((response) => {
+				if (response.status === 200) {
+					setSelectedPokemonDetail(response.data);
+				}
+			})
+			.catch((error) => {
+				setSelectedPokemonDetail(null);
+			});
 	}, [searchValue]);
 
 	// Evento que se ejecuta cuando el usuario llega al fondo de la lista
@@ -97,9 +125,16 @@ export const Pokemons = () => {
 	const onSelectionChanged = (p) => {
 		setSelectedPokemon(p);
 
-		axios.get(`${api_pokemon}pokemon-species/${p.id}`).then((response) => {
-			setSelectedPokemonDetail(response.data);
-		});
+		axios
+			.get(`${api_pokemon}pokemon-species/${p.id}`)
+			.then((response) => {
+				if (response.status === 200) {
+					setSelectedPokemonDetail(response.data);
+				}
+			})
+			.catch((error) => {
+				setSelectedPokemonDetail(null);
+			});
 	};
 
 	return (
