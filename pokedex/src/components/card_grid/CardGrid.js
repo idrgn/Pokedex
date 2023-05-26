@@ -19,8 +19,12 @@ export const PokemonGrid = (props) => {
 	const [selected, setSelected] = useState(null);
 
 	const onSelect = (p) => {
-		setSelected(p.id);
-		props.onSelectionChanged(p);
+		if (selected !== p.id) {
+			setSelected(p.id);
+			if (props.hasOwnProperty("onSelectionChanged")) {
+				props.onSelectionChanged(p);
+			}
+		}
 	};
 
 	return (
