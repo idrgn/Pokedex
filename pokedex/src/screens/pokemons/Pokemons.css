@@ -12,6 +12,7 @@
 	flex-direction: row;
 	justify-content: space-around;
 	margin-bottom: 50px;
+	width: 100%;
 }
 
 .contenedor-lista-wrapper {
@@ -31,7 +32,7 @@
 	margin: 0em;
 }
 
-.contenedor-lista,
+.contenedor-lista-wrapper,
 .contenedor-detalle,
 .controles-pokemon {
 	border: 3px solid rgb(236, 235, 235);
@@ -70,6 +71,8 @@
 	.contenedor-listado-detalle {
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.contenedor-lista-wrapper {
@@ -83,5 +86,9 @@
 		width: 95%;
 		height: 100%;
 		margin-bottom: 15px;
+	}
+
+	.controles-pokemon {
+		width: 85%;
 	}
 }

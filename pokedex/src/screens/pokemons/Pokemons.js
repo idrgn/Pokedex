@@ -14,11 +14,32 @@ export const Pokemons = () => {
 
 	const [loadGifs, setLoadGifs] = useState(false);
 	const [isDataLoaded, setIsDataLoaded] = useState(false);
+	const [isLoadingNew, setIsLoadingNew] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [pokemonData, setPokemonData] = useState(null);
 	const [selectedPokemon, setSelectedPokemon] = useState(null);
 	const [selectedPokemonDetail, setSelectedPokemonDetail] = useState(null);
 	const [processedPokemonList, setProcessedPokemonList] = useState([]);
+
+	async function makeRequests(index, data) {
+		const requests = [];
+
+		for (let entry of data.results.slice(index, index + amountPerPage)) {
+			requests.push(
+				axios.get(entry.url).then((response) => {
+					setProcessedPokemonList((prevList) => customConcat(prevList, response.data));
+				})
+			);
+		}
+
+		try {
+			await Promise.all(requests);
+		} catch (error) {
+			setCurrentIndex((prevIndex) => prevIndex - amountPerPage);
+		} finally {
+			setIsLoadingNew(false);
+		}
+	}
 
 	// Obtener la lista de Pokémon al cargar la página
 	useEffect(() => {
@@ -31,12 +52,7 @@ export const Pokemons = () => {
 	// Cargar nuevos Pokémon al cambiar de índice
 	useEffect(() => {
 		if (pokemonData === null) return;
-
-		for (let entry of pokemonData.results.slice(currentIndex, currentIndex + amountPerPage)) {
-			axios.get(entry.url).then((response) => {
-				setProcessedPokemonList((prevList) => customConcat(prevList, response.data));
-			});
-		}
+		makeRequests(currentIndex, pokemonData);
 	}, [currentIndex, pokemonData]);
 
 	// Evento que se ejecuta cuando el usuario llega al fondo de la lista
@@ -70,7 +86,7 @@ export const Pokemons = () => {
 						<div className="lista-pokemon">
 							<div className="lista-small-padding"></div>
 							<PokemonGrid onSelectionChanged={onSelectionChanged} pokemonData={processedPokemonList} animated={loadGifs}></PokemonGrid>
-							{isDataLoaded ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
+							{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
 						</div>
 					</div>
 				</div>
