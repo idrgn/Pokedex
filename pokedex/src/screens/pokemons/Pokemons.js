@@ -1,8 +1,8 @@
-import { FormControlLabel, Switch } from "@mui/material";
+import { Autocomplete, FormControlLabel, Switch, TextField } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { api_pokemon } from "../../API";
-import { customConcat } from "../../Helper";
+import { capitalizeFirstLetter, customConcat } from "../../Helper";
 import { PokemonGrid } from "../../components/card_grid/CardGrid";
 import { PokemonDetail } from "../../components/pokemon_detail/PokemonDetail";
 import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
@@ -17,9 +17,13 @@ export const Pokemons = () => {
 	const [isLoadingNew, setIsLoadingNew] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [pokemonData, setPokemonData] = useState(null);
+	const [autocompleteData, setAutocompleteData] = useState([]);
 	const [selectedPokemon, setSelectedPokemon] = useState(null);
 	const [selectedPokemonDetail, setSelectedPokemonDetail] = useState(null);
 	const [processedPokemonList, setProcessedPokemonList] = useState([]);
+
+	const [searchValue, setSearchValue] = useState(null);
+	const [searchInputValue, setSearchInputValue] = useState("");
 
 	async function makeRequests(index, data) {
 		const requests = [];
@@ -45,6 +49,17 @@ export const Pokemons = () => {
 	useEffect(() => {
 		axios.get(`${api_pokemon}pokemon?limit=100000&offset=0`).then((response) => {
 			setPokemonData(response.data);
+
+			setAutocompleteData(
+				response.data.results.map((p) => {
+					const pokemonId = p.url.split("/pokemon/")[1].slice(0, -1);
+					return {
+						label: `${pokemonId} - ${capitalizeFirstLetter(p.name)}`,
+						id: pokemonId,
+					};
+				})
+			);
+
 			setIsDataLoaded(true);
 		});
 	}, []);
@@ -54,6 +69,19 @@ export const Pokemons = () => {
 		if (pokemonData === null) return;
 		makeRequests(currentIndex, pokemonData);
 	}, [currentIndex, pokemonData]);
+
+	// Evento que se ejecuta al cambiar el Pokémon seleccionado en el menú superior
+	useEffect(() => {
+		if (searchValue === null) return;
+
+		axios.get(`${api_pokemon}pokemon/${searchValue.id}`).then((response) => {
+			setSelectedPokemon(response.data);
+		});
+
+		axios.get(`${api_pokemon}pokemon-species/${searchValue.id}`).then((response) => {
+			setSelectedPokemonDetail(response.data);
+		});
+	}, [searchValue]);
 
 	// Evento que se ejecuta cuando el usuario llega al fondo de la lista
 	const onScroll = () => {
@@ -79,7 +107,23 @@ export const Pokemons = () => {
 			<h1 className="listado-pokemon-titulo">Listado de Pokémons</h1>
 			<div className="controles-pokemon">
 				<FormControlLabel control={<Switch checked={loadGifs} onChange={loadGifsChanged} name="loadgif" />} label="Cargar imágenes animadas" />
+				<Autocomplete
+					value={searchValue}
+					onChange={(event, newValue) => {
+						setSearchValue(newValue);
+					}}
+					inputValue={searchInputValue}
+					onInputChange={(event, newInputValue) => {
+						setSearchInputValue(newInputValue);
+					}}
+					disablePortal
+					id="combo-box"
+					options={autocompleteData}
+					sx={{ width: 300 }}
+					renderInput={(params) => <TextField {...params} label="Pokémon" />}
+				/>
 			</div>
+
 			<div className="contenedor-listado-detalle">
 				<div className="contenedor-lista-wrapper">
 					<div className="contenedor-lista">
