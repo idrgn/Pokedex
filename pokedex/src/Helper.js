@@ -75,6 +75,21 @@ export const getGeneraText = (genera) => {
 	return "Tipo desconocido...";
 };
 
+export const getItemText = (genera) => {
+	let spanish = null;
+	let english = null;
+
+	for (let entry of genera) {
+		if (entry.language.name === "es") spanish = entry.name;
+		else if (entry.language.name === "en") english = entry.name;
+		if (spanish != null && english != null) break;
+	}
+
+	if (spanish != null) return spanish;
+	if (english != null) return english;
+	return "Tipo desconocido...";
+};
+
 export const getLightColor = (name) => {
 	const baseColor = tinycolor(name);
 	let lighterColor = tinycolor.mix(baseColor, "white", 80);
