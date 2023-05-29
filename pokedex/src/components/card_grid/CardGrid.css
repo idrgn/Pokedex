@@ -1,10 +1,12 @@
-.pokemon-grid-container {
+.pokemon-grid-container,
+.item-grid-container {
 	display: flex;
 	justify-content: space-around;
 }
 
 @media screen and (max-width: 480px) {
-	.pokemon-grid-container {
+	.pokemon-grid-container,
+	.item-grid-container {
 		width: 100%;
 	}
 }
