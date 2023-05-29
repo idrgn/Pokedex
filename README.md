@@ -1,4 +1,4 @@
-<p align="center"><img src="resources/logo.png"></p>
+<p align="center"><img src="resources/logo.png"><a href="http://pokedex.lekiam.net/"></a></p>
 
 <p align="center">Pokedex es una pequeña web que muestra datos de Pokémon, movimientos y objetos</p>
 
@@ -11,17 +11,59 @@
 </p>
 
 <p align="center">
- <a href="#tecnologías">Tecnologías</a> •
+ <a href="#descripción">Descripción</a> •
+ <a href="#uso">Uso</a> •
+ <a href="#créditos">Créditos</a> •
  <a href="#licencia">Licencia</a>
 </p>
 
-### Tecnologías
+### Descripción
 
-Esta página ha sido creada con:
+La Pokédex es una aplicación cuyo objetivo es brindar información detallada sobre los Pokémon, así como almacenar datos relevantes sobre movimientos y objetos presentes en el juego.
 
-- React.js
-- Material UI
+Proporciona los siguientes datos:
+
+- Pokémon:
+  - Nombre
+  - Descripción
+  - Habilidades
+  - Estadísticas
+- Movimientos
+  - Nombre
+  - Descripción
+- Objetos:
+  - Nombre
+  - Descripción
+  - Precio
+
+### Uso
+
+Para ejecutar este proyecto localmente es necesario tener git y node instalados.
+
+```bash
+# Clonar el repositorio
+$ git clone https://github.com/idrgn/Pokedex
+
+# Entrar en el repositorio
+$ cd pokedex/pokedex
+
+# Instalar las dependencias
+$ npm install
+
+# Ejecutar la aplicación
+$ npm run start
+```
+
+### Créditos
+
+Este proyecto ha sido creado con las siguientes librerías:
+
+- [React.js](https://es.react.dev/)
+- [Material UI](https://mui.com/)
+- [tinycolor2](https://www.npmjs.com/package/tinycolor2)
+
+También utiliza [Pokeapi](https://pokeapi.co/), una API pública con infinidad de datos sobre el universo Pokémon.
 
 ### Licencia
 
-Licencia MIT
+Este proyecto utiliza la licencia [MIT](https://opensource.org/license/mit/).
