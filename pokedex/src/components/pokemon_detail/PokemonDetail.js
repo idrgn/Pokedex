@@ -3,6 +3,8 @@ import { capitalizeFirstLetter, getBestSprite, getFlavorText, getGeneraText, get
 import { PokemonStats } from "../pokemon_stats/PokemonStats";
 import { PokemonType } from "../pokemon_type/PokemonType";
 
+import { Star } from "@mui/icons-material";
+
 import "./PokemonDetail.css";
 
 export const PokemonDetail = (props) => {
@@ -31,9 +33,12 @@ export const PokemonDetail = (props) => {
 					{capitalizeFirstLetter(props.pokemon.name)}
 				</Typography>
 
-				<Typography sx={{ textAlign: "center" }} color="text.secondary" variant="body2" component="div">
-					{getGeneraText(props.detail.genera)}
-				</Typography>
+				<Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+					<Typography sx={{ textAlign: "center" }} color="text.secondary" variant="body2" component="div">
+						{getGeneraText(props.detail.genera)}
+					</Typography>
+					{props.detail.is_legendary ? <Star sx={{ marginLeft: "5px" }} fontSize="14px" color="disabled" /> : <></>}
+				</Box>
 
 				<CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
 					{props.pokemon.types.map((t) => (
