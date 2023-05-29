@@ -50,14 +50,20 @@ export const getFlavorText = (flavor) => {
 	let english = null;
 
 	for (let entry of flavor) {
-		if (entry.language.name === "es") spanish = entry.flavor_text;
-		else if (entry.language.name === "en") english = entry.flavor_text;
+		if (entry.language.name === "es") spanish = getEntryFlavorText(entry);
+		else if (entry.language.name === "en") english = getEntryFlavorText(entry);
 		if (spanish != null && english != null) break;
 	}
 
 	if (spanish != null) return spanish;
 	if (english != null) return english;
 	return "Descripción desconocida...";
+};
+
+export const getEntryFlavorText = (entry) => {
+	if (entry.hasOwnProperty("flavor_text")) return entry.flavor_text;
+	if (entry.hasOwnProperty("text")) return entry.text;
+	return null;
 };
 
 export const getGeneraText = (genera) => {
