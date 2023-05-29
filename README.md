@@ -1,27 +1,70 @@
-<p align="center"><img src="https://raw.githubusercontent.com/idrgn/Pokedex/af901a4d0f36f6d9f21772044865b6649ef76572/resources/logo.png"></p>
+<p align="center"><a href="http://pokedex.lekiam.net/"><img src="resources/logo.png"></a></p>
 
 <p align="center">Pokedex es una pequeña web que muestra datos de Pokémon, movimientos y objetos</p>
+<p align="center"><a href="http://pokedex.lekiam.net/">Visitar Pokedex</a></p>
 
 <p align="center">
  <img src="https://img.shields.io/github/languages/top/idrgn/Pokedex" alt="Top Language Badge"/>
  <img src="https://img.shields.io/github/last-commit/idrgn/Pokedex" alt="Last Commit Badge"/>
  <img src="https://img.shields.io/github/issues-pr/idrgn/Pokedex" alt="Pull Requests Badge"/>
- <img src="https://img.shields.io/github/contributors/idrgn/Pokedex?color=2b9348" alt="GitHub contributors" >
- <img src="https://img.shields.io/github/license/idrgn/Pokedex?color=2b9348" alt="License Badge"/>
+ <img src="https://img.shields.io/github/contributors/idrgn/Pokedex" alt="GitHub contributors" >
+ <img src="https://img.shields.io/github/license/idrgn/Pokedex" alt="License Badge"/>
 </p>
 
 <p align="center">
- <a href="#tecnologías">Tecnologías</a> •
+ <a href="#descripción">Descripción</a> •
+ <a href="#uso">Uso</a> •
+ <a href="#créditos">Créditos</a> •
  <a href="#licencia">Licencia</a>
 </p>
 
-### Tecnologías
+## Descripción
 
-Esta página ha sido creada con:
+La Pokédex es una aplicación cuyo objetivo es brindar información detallada sobre los Pokémon, así como almacenar datos relevantes sobre movimientos y objetos presentes en el juego.
 
-- React.js
-- Material UI
+Proporciona los siguientes datos:
 
-### Licencia
+- Pokémon:
+  - Nombre
+  - Descripción
+  - Habilidades
+  - Estadísticas
+- Movimientos
+  - Nombre
+  - Descripción
+- Objetos:
+  - Nombre
+  - Descripción
+  - Precio
 
-Licencia MIT
+## Uso
+
+Para ejecutar este proyecto localmente es necesario tener git y node instalados.
+
+```bash
+# Clonar el repositorio
+$ git clone https://github.com/idrgn/Pokedex
+
+# Entrar en el repositorio
+$ cd pokedex/pokedex
+
+# Instalar las dependencias
+$ npm install
+
+# Ejecutar la aplicación
+$ npm run start
+```
+
+## Créditos
+
+Este proyecto ha sido creado con las siguientes librerías:
+
+- [React.js](https://es.react.dev/)
+- [Material UI](https://mui.com/)
+- [tinycolor2](https://www.npmjs.com/package/tinycolor2)
+
+También utiliza [Pokeapi](https://pokeapi.co/), una API pública con infinidad de datos sobre el universo Pokémon.
+
+## Licencia
+
+Este proyecto utiliza la licencia [MIT](https://opensource.org/license/mit/).
