@@ -1,11 +1,11 @@
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { getItemText } from "../../Helper";
+import { getItemText, getLightColor } from "../../Helper";
 
 import "./ItemCard.css";
 
 export const ItemCard = (props) => {
 	return (
-		<Card sx={{ borderRadius: "10px" }} variant="outlined" className="item-card" style={{ backgroundColor: props.selected ? "lightblue" : "azure", transition: "background-color 0.5s" }}>
+		<Card sx={{ borderRadius: "10px" }} variant="outlined" className="item-card" style={{ backgroundColor: props.selected ? "palegreen" : getLightColor("palegreen"), transition: "background-color 0.5s" }}>
 			<CardContent>
 				<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
 					Nº {props.item.id}
