@@ -1,4 +1,4 @@
-import { Star, VisibilityOff } from "@mui/icons-material";
+import { Height, Scale, Star, VisibilityOff } from "@mui/icons-material";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { capitalizeFirstLetter, getBestSprite, getFlavorText, getGeneraText, getLightColor } from "../../Helper";
 import { PokemonStats } from "../pokemon_stats/PokemonStats";
@@ -63,12 +63,19 @@ export const PokemonDetail = (props) => {
 				</CardContent>
 
 				<CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
-					<Typography sx={{ textAlign: "center" }} component="div">
-						{`Altura: ${props.pokemon.height}`}
-					</Typography>
-					<Typography sx={{ textAlign: "center" }} component="div">
-						{`Peso: ${props.pokemon.weight}`}
-					</Typography>
+					<Box className="measure-single">
+						<Height sx={{ marginRight: "10px" }} />
+						<Typography sx={{ textAlign: "center" }} component="div">
+							{`Altura: ${props.pokemon.height} dm`}
+						</Typography>
+					</Box>
+
+					<Box className="measure-single">
+						<Scale sx={{ marginRight: "10px" }} />
+						<Typography sx={{ textAlign: "center" }} component="div">
+							{`Peso: ${props.pokemon.weight} hg`}
+						</Typography>
+					</Box>
 				</CardContent>
 			</CardContent>
 		</Card>
