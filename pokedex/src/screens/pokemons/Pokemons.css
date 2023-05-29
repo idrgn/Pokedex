@@ -1,4 +1,6 @@
 .titulo-listado {
+	font-family: "Rubik", sans-serif;
+	text-transform: uppercase;
 	text-align: center;
 	margin-top: 50px;
 }
