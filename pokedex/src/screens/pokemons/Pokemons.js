@@ -138,9 +138,9 @@ export const Pokemons = () => {
 	};
 
 	return (
-		<div className="pokedex-list-main-container">
-			<h1 className="listado-pokemon-titulo">Listado de Pokémons</h1>
-			<div className="controles-pokemon">
+		<div className="contenedor-principal-listado">
+			<h1 className="titulo-listado">Listado de Pokémons</h1>
+			<div className="contenedor-controles">
 				<FormControlLabel control={<Switch checked={loadGifs} onChange={loadGifsChanged} name="loadgif" />} label="Cargar imágenes animadas" />
 				<Autocomplete
 					value={searchValue}
@@ -162,7 +162,7 @@ export const Pokemons = () => {
 			<div className="contenedor-listado-detalle">
 				<div className="contenedor-lista-wrapper">
 					<div className="contenedor-lista">
-						<div className="lista-pokemon">
+						<div className="contenedor-cuadricula">
 							<div className="lista-small-padding"></div>
 							<PokemonGrid onSelectionChanged={onSelectionChanged} pokemonData={processedPokemonList} animated={loadGifs}></PokemonGrid>
 							{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
