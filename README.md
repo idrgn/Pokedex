@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/idrgn/Pokedex/tree/readme/resources/logo.png"
+<p align="center"><img src="https://raw.githubusercontent.com/idrgn/Pokedex/af901a4d0f36f6d9f21772044865b6649ef76572/resources/logo.png"
 height="130"></p>
 
 <p align="center">Pokedex es una pequeña web que muestra datos de Pokémon, movimientos y objetos</p>
