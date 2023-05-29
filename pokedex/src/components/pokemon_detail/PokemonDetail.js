@@ -1,9 +1,8 @@
+import { Star, VisibilityOff } from "@mui/icons-material";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { capitalizeFirstLetter, getBestSprite, getFlavorText, getGeneraText, getLightColor } from "../../Helper";
 import { PokemonStats } from "../pokemon_stats/PokemonStats";
 import { PokemonType } from "../pokemon_type/PokemonType";
-
-import { Star } from "@mui/icons-material";
 
 import "./PokemonDetail.css";
 
@@ -50,9 +49,12 @@ export const PokemonDetail = (props) => {
 					{getFlavorText(props.detail.flavor_text_entries)}
 				</Typography>
 
-				<CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
+				<CardContent sx={{ display: "flex", justifyContent: "space-around" }} className="ability-container">
 					{props.pokemon.abilities.map((a) => (
-						<Typography>{capitalizeFirstLetter(a.ability.name)}</Typography>
+						<Box className="ability-single">
+							<Typography>{capitalizeFirstLetter(a.ability.name)}</Typography>
+							{a.is_hidden ? <VisibilityOff sx={{ marginLeft: "5px" }} fontSize="14px" color="disabled" /> : <></>}
+						</Box>
 					))}
 				</CardContent>
 
