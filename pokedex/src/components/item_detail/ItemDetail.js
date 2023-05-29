@@ -8,7 +8,7 @@ export const ItemDetail = (props) => {
 		return (
 			<Card sx={{ height: "100%", minHeight: "80vh", display: "flex", flexDirection: "column", justifyContent: "space-around", justifyItems: "space-around" }}>
 				<Typography sx={{ textAlign: "center", padding: "20px" }} variant="h4">
-					Selecciona un Pokémon para ver sus detalles
+					Selecciona un Objeto para ver sus detalles
 				</Typography>
 			</Card>
 		);
