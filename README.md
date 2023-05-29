@@ -17,7 +17,7 @@
  <a href="#licencia">Licencia</a>
 </p>
 
-### Descripción
+## Descripción
 
 La Pokédex es una aplicación cuyo objetivo es brindar información detallada sobre los Pokémon, así como almacenar datos relevantes sobre movimientos y objetos presentes en el juego.
 
@@ -36,7 +36,7 @@ Proporciona los siguientes datos:
   - Descripción
   - Precio
 
-### Uso
+## Uso
 
 Para ejecutar este proyecto localmente es necesario tener git y node instalados.
 
@@ -54,7 +54,7 @@ $ npm install
 $ npm run start
 ```
 
-### Créditos
+## Créditos
 
 Este proyecto ha sido creado con las siguientes librerías:
 
@@ -64,6 +64,6 @@ Este proyecto ha sido creado con las siguientes librerías:
 
 También utiliza [Pokeapi](https://pokeapi.co/), una API pública con infinidad de datos sobre el universo Pokémon.
 
-### Licencia
+## Licencia
 
 Este proyecto utiliza la licencia [MIT](https://opensource.org/license/mit/).
