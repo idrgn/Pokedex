@@ -15,7 +15,7 @@ const shortStatNames = {
 	hp: "PV",
 	attack: "Atk",
 	defense: "Def",
-	"special-attack": "AtS",
+	"special-attack": "AtkS",
 	"special-defense": "DefS",
 	speed: "Vel",
 };

@@ -1,3 +1,4 @@
+import { Height, Scale, Star, VisibilityOff } from "@mui/icons-material";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { capitalizeFirstLetter, getBestSprite, getFlavorText, getGeneraText, getLightColor } from "../../Helper";
 import { PokemonStats } from "../pokemon_stats/PokemonStats";
@@ -31,9 +32,12 @@ export const PokemonDetail = (props) => {
 					{capitalizeFirstLetter(props.pokemon.name)}
 				</Typography>
 
-				<Typography sx={{ textAlign: "center" }} color="text.secondary" variant="body2" component="div">
-					{getGeneraText(props.detail.genera)}
-				</Typography>
+				<Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+					<Typography sx={{ textAlign: "center" }} color="text.secondary" variant="body2" component="div">
+						{getGeneraText(props.detail.genera)}
+					</Typography>
+					{props.detail.is_legendary ? <Star sx={{ marginLeft: "5px" }} fontSize="14px" color="disabled" /> : <></>}
+				</Box>
 
 				<CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
 					{props.pokemon.types.map((t) => (
@@ -45,9 +49,12 @@ export const PokemonDetail = (props) => {
 					{getFlavorText(props.detail.flavor_text_entries)}
 				</Typography>
 
-				<CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
+				<CardContent sx={{ display: "flex", justifyContent: "space-around" }} className="ability-container">
 					{props.pokemon.abilities.map((a) => (
-						<Typography>{capitalizeFirstLetter(a.ability.name)}</Typography>
+						<Box className="ability-single">
+							<Typography>{capitalizeFirstLetter(a.ability.name)}</Typography>
+							{a.is_hidden ? <VisibilityOff sx={{ marginLeft: "5px" }} fontSize="14px" color="disabled" /> : <></>}
+						</Box>
 					))}
 				</CardContent>
 
@@ -56,12 +63,19 @@ export const PokemonDetail = (props) => {
 				</CardContent>
 
 				<CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
-					<Typography sx={{ textAlign: "center" }} component="div">
-						{`Altura: ${props.pokemon.height}`}
-					</Typography>
-					<Typography sx={{ textAlign: "center" }} component="div">
-						{`Peso: ${props.pokemon.weight}`}
-					</Typography>
+					<Box className="measure-single">
+						<Height sx={{ marginRight: "10px" }} />
+						<Typography sx={{ textAlign: "center" }} component="div">
+							{`Altura: ${props.pokemon.height} dm`}
+						</Typography>
+					</Box>
+
+					<Box className="measure-single">
+						<Scale sx={{ marginRight: "10px" }} />
+						<Typography sx={{ textAlign: "center" }} component="div">
+							{`Peso: ${props.pokemon.weight} hg`}
+						</Typography>
+					</Box>
 				</CardContent>
 			</CardContent>
 		</Card>
