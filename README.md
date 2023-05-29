@@ -1,6 +1,7 @@
-<p align="center"><img src="resources/logo.png"><a href="http://pokedex.lekiam.net/"></a></p>
+<p align="center"><a href="http://pokedex.lekiam.net/"><img src="resources/logo.png"></a></p>
 
 <p align="center">Pokedex es una pequeña web que muestra datos de Pokémon, movimientos y objetos</p>
+<p align="center"><a href="http://pokedex.lekiam.net/">Visitar Pokedex</a></p>
 
 <p align="center">
  <img src="https://img.shields.io/github/languages/top/idrgn/Pokedex" alt="Top Language Badge"/>
