@@ -73,7 +73,7 @@ export const Items = () => {
 
 	return (
 		<div className="contenedor-principal-listado">
-			<h1 className="titulo-listado">Listado de Objetos</h1>
+			<h1 className="titulo-listado">{itemData ? `Listado de Objetos (${itemData.count} entradas)` : "Listado de Objetos"}</h1>
 			<div className="contenedor-listado-detalle">
 				<div className="contenedor-lista-wrapper">
 					<div className="contenedor-lista">

@@ -1,4 +1,5 @@
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Toll } from "@mui/icons-material";
+import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { getItemText, getLightColor } from "../../Helper";
 
 import "./ItemCard.css";
@@ -15,6 +16,16 @@ export const ItemCard = (props) => {
 				</Typography>
 			</CardContent>
 			<CardMedia component="img" height="75" width="75" image={props.item.sprites.default} alt={getItemText(props.item.names)} sx={{ paddingTop: "0.25em", objectFit: "contain" }} />
+
+			<CardContent>
+				<Box sx={{ display: "flex", alignItems: "center" }}>
+					<Typography sx={{ fontSize: 14 }} color="text.secondary">
+						{props.item.cost}
+					</Typography>
+					<Box sx={{ width: "5px" }}></Box>
+					<Toll fontSize="10" />
+				</Box>
+			</CardContent>
 		</Card>
 	);
 };
