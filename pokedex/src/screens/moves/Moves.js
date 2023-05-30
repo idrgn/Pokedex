@@ -8,7 +8,7 @@ import "./Moves.css";
 import { MoveGrid } from "../../components/move/move_grid/MoveGrid";
 
 export const Moves = () => {
-	const amountPerPage = 20;
+	const amountPerPage = 30;
 
 	const [isDataLoaded, setIsDataLoaded] = useState(false);
 	const [isLoadingNew, setIsLoadingNew] = useState(false);
@@ -50,14 +50,12 @@ export const Moves = () => {
 	return (
 		<div className="contenedor-principal-listado">
 			<h1 className="titulo-listado">{moveData ? `Listado de Movimientos (${moveData.count} entradas)` : "Listado de Objetos"}</h1>
-			<div className="contenedor-listado-detalle">
-				<div className="contenedor-lista-wrapper">
-					<div className="contenedor-lista">
-						<div className="contenedor-cuadricula">
-							<div className="lista-small-padding"></div>
-							<MoveGrid moveData={processedMoveList} />
-							{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
-						</div>
+			<div className="contenedor-lista-wrapper moves">
+				<div className="contenedor-lista">
+					<div className="contenedor-cuadricula">
+						<div className="lista-small-padding"></div>
+						<MoveGrid moveData={processedMoveList} />
+						{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
 					</div>
 				</div>
 			</div>

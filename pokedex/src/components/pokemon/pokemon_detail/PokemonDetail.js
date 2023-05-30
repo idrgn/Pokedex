@@ -3,7 +3,7 @@ import { Box, Card, CardContent, CardMedia, Tooltip, Typography } from "@mui/mat
 import { useEffect, useState } from "react";
 import { Pokedex } from "../../../API";
 import { capitalizeFirstLetter, getBestSprite, getFlavorText, getGeneraText, getLightColor, getName, isHiddenAbility } from "../../../Helper";
-import { PokemonType } from "../../type/Type";
+import { Type } from "../../type/Type";
 import { PokemonStats } from "../pokemon_stats/PokemonStats";
 
 import "./PokemonDetail.css";
@@ -54,7 +54,7 @@ export const PokemonDetail = (props) => {
 
 				<CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
 					{props.pokemon.types.map((t) => (
-						<PokemonType type={t.type.name} size="big"></PokemonType>
+						<Type type={t.type.name} size="big"></Type>
 					))}
 				</CardContent>
 

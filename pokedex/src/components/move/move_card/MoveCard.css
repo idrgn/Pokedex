@@ -4,6 +4,22 @@
 	align-items: center;
 }
 
+.single-move-attribute-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.attribute-single {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	height: 35px;
+	width: 35px;
+	background-color: rgba(155, 155, 155, 0.25);
+	border-radius: 50%;
+}
+
 @media screen and (max-width: 480px) {
 	.move-card {
 		width: 80vw;
