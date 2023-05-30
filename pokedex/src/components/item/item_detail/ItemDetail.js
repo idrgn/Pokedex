@@ -1,12 +1,13 @@
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { getFlavorText, getName } from "../../../Helper";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { getFlavorText, getLightColor, getName } from "../../../Helper";
+import { Box } from "@mui/system";
 
 import "./ItemDetail.css";
 
 export const ItemDetail = (props) => {
 	if (props.item === null) {
 		return (
-			<Card sx={{ height: "100%", minHeight: "80vh", display: "flex", flexDirection: "column", justifyContent: "space-around", justifyItems: "space-around" }}>
+			<Card sx={{ display: "flex", flexDirection: "column", justifyContent: "space-around", justifyItems: "space-around" }}>
 				<Typography sx={{ textAlign: "center", padding: "20px" }} variant="h4">
 					Selecciona un Objeto para ver sus detalles
 				</Typography>
@@ -15,20 +16,19 @@ export const ItemDetail = (props) => {
 	}
 
 	return (
-		<Card sx={{ height: "100%", minHeight: "80vh", display: "flex", flexDirection: "column", justifyContent: "space-around" }}>
-			<CardContent>
-				<Box sx={{ display: "flex", justifyContent: "space-around", marginBottom: "20px", marginTop: "30px" }}>
-					<CardMedia sx={{ height: "175px", width: "100%", paddingTop: "0.25em", objectFit: "contain" }} component="img" image={props.item.sprites.default} alt={getName(props.item.names)} />
-				</Box>
+		<Card sx={{ backgroundColor: getLightColor("lightgreen") }} className="item-detail-container">
+			<Box sx={{ display: "flex" }}>
+				<CardContent className="item-detail-box">
+					<CardMedia sx={{ height: "100px", width: "100%", objectFit: "contain" }} component="img" image={props.item.sprites.default} alt={getName(props.item.names)} />
+				</CardContent>
+				<CardContent className="item-detail-box">
+					<Typography sx={{ textAlign: "center" }} variant="h4" component="div">
+						{getName(props.item.names)}
+					</Typography>
+				</CardContent>
+			</Box>
 
-				<Typography sx={{ fontSize: 14, textAlign: "center" }} color="text.secondary" gutterBottom>
-					Nº {props.item.id}
-				</Typography>
-
-				<Typography sx={{ textAlign: "center" }} variant="h4" component="div">
-					{getName(props.item.names)}
-				</Typography>
-
+			<CardContent className="item-detail-box">
 				<Typography sx={{ textAlign: "center", padding: "20px" }} variant="body2" component="div">
 					{getFlavorText(props.item.flavor_text_entries)}
 				</Typography>

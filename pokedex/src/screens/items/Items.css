@@ -1,0 +1,21 @@
+.contenedor-listado-detalle.items {
+	flex-direction: column;
+}
+
+.contenedor-lista-wrapper.items,
+.contenedor-detalle.items {
+	width: 100%;
+}
+
+.contenedor-detalle.items {
+	width: 100%;
+	margin-bottom: 10px;
+	min-height: inherit;
+}
+
+@media screen and (max-width: 480px) {
+	.contenedor-lista-wrapper.items,
+	.contenedor-detalle.items {
+		width: 95%;
+	}
+}
