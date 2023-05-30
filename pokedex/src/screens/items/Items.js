@@ -33,14 +33,10 @@ export const Items = () => {
 
 	// Obtener la lista de objetos al cargar la página
 	useEffect(() => {
-		Pokedex.resource("/api/v2/item?limit=100000&offset=0")
-			.then((response) => {
-				setItemData(response);
-				setIsDataLoaded(true);
-			})
-			.catch((error) => {
-				setItemData([]);
-			});
+		Pokedex.getItemsList().then((response) => {
+			setItemData(response);
+			setIsDataLoaded(true);
+		});
 	}, []);
 
 	// Cargar nuevos objetos al cambiar de índice

@@ -37,23 +37,21 @@ export const Pokemons = () => {
 			});
 	}
 
+	function mapPokemonList(p) {
+		const pokemonId = p.url.split("/pokemon/")[1].slice(0, -1);
+		return {
+			label: `${pokemonId} - ${capitalizeFirstLetter(p.name)}`,
+			id: pokemonId,
+		};
+	}
+
 	// Obtener la lista de Pokémon al cargar la página
 	useEffect(() => {
-		Pokedex.resource(`/api/v2/pokemon?limit=100000&offset=0`)
+		Pokedex.getPokemonsList()
 			.then((response) => {
 				setPokemonData(response);
-
-				setAutocompleteData(
-					response.results.map((p) => {
-						const pokemonId = p.url.split("/pokemon/")[1].slice(0, -1);
-						return {
-							label: `${pokemonId} - ${capitalizeFirstLetter(p.name)}`,
-							id: pokemonId,
-						};
-					})
-				);
-
 				setIsDataLoaded(true);
+				setAutocompleteData(response.results.map(mapPokemonList));
 			})
 			.catch((error) => {
 				setPokemonData([]);

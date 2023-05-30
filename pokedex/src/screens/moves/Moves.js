@@ -31,14 +31,10 @@ export const Moves = () => {
 
 	// Obtener la lista de movimientos al cargar la página
 	useEffect(() => {
-		Pokedex.resource("/api/v2/move?limit=100000&offset=0")
-			.then((response) => {
-				setMoveData(response);
-				setIsDataLoaded(true);
-			})
-			.catch((error) => {
-				setMoveData([]);
-			});
+		Pokedex.getMovesList().then((response) => {
+			setMoveData(response);
+			setIsDataLoaded(true);
+		});
 	}, []);
 
 	// Cargar nuevos movimientos al cambiar de índice
