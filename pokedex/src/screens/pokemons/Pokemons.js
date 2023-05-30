@@ -8,6 +8,7 @@ import { PokemonDetail } from "../../components/pokemon/pokemon_detail/PokemonDe
 import { PokemonGrid } from "../../components/pokemon/pokemon_grid/PokemonGrid";
 
 import "./Pokemons.css";
+import { PokemonTypes } from "../../Data";
 
 export const Pokemons = () => {
 	const amountPerPage = 20;
@@ -23,6 +24,8 @@ export const Pokemons = () => {
 	const [processedPokemonList, setProcessedPokemonList] = useState([]);
 	const [searchValue, setSearchValue] = useState(null);
 	const [searchInputValue, setSearchInputValue] = useState("");
+	const [searchValueType, setSearchValueType] = useState(null);
+	const [searchInputValueType, setSearchInputValueType] = useState("");
 
 	async function makeRequests() {
 		const dataToProcess = pokemonData.results.map((obj) => obj.url).slice(currentIndex, currentIndex + amountPerPage);
@@ -112,6 +115,23 @@ export const Pokemons = () => {
 			<h1 className="titulo-listado">{pokemonData ? `Listado de Pokémons (${pokemonData.count} entradas)` : "Listado de Pokémons"}</h1>
 			<div className="contenedor-controles">
 				<FormControlLabel control={<Switch checked={loadGifs} onChange={loadGifsChanged} name="loadgif" />} label="Cargar imágenes animadas" />
+
+				<Autocomplete
+					value={searchValueType}
+					onChange={(event, newValue) => {
+						setSearchValueType(newValue);
+					}}
+					inputValue={searchInputValueType}
+					onInputChange={(event, newInputValue) => {
+						setSearchInputValueType(newInputValue);
+					}}
+					disablePortal
+					id="combo-box-types"
+					options={PokemonTypes}
+					sx={{ width: 300 }}
+					renderInput={(params) => <TextField {...params} label="Filtrar por tipo" />}
+				/>
+
 				<Autocomplete
 					value={searchValue}
 					onChange={(event, newValue) => {
@@ -122,10 +142,10 @@ export const Pokemons = () => {
 						setSearchInputValue(newInputValue);
 					}}
 					disablePortal
-					id="combo-box"
+					id="combo-box-pokemon"
 					options={autocompleteData}
 					sx={{ width: 300 }}
-					renderInput={(params) => <TextField {...params} label="Pokémon" />}
+					renderInput={(params) => <TextField {...params} label="Buscar Pokémon" />}
 				/>
 			</div>
 
@@ -134,7 +154,7 @@ export const Pokemons = () => {
 					<div className="contenedor-lista">
 						<div className="contenedor-cuadricula">
 							<div className="lista-small-padding"></div>
-							<PokemonGrid onSelectionChanged={onSelectionChanged} pokemonData={processedPokemonList} animated={loadGifs}></PokemonGrid>
+							<PokemonGrid onSelectionChanged={onSelectionChanged} pokemonData={processedPokemonList} animated={loadGifs} type={searchValueType}></PokemonGrid>
 							{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
 						</div>
 					</div>

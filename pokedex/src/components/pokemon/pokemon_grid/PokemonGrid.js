@@ -16,9 +16,20 @@ export const PokemonGrid = (props) => {
 		}
 	};
 
+	let pokemonData = props.pokemonData;
+
+	if (props.type !== null) {
+		pokemonData = pokemonData.filter((p) => {
+			for (let entry of p.types) {
+				if (props.type.id === entry.type.name) return true;
+			}
+			return false;
+		});
+	}
+
 	return (
 		<Grid container rowSpacing={{ xs: 1, sm: 2, md: 3 }} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ display: "flex", justifyContent: "center" }}>
-			{props.pokemonData.map((p) => (
+			{pokemonData.map((p) => (
 				<Grid item onClick={() => onSelect(p)} className="pokemon-grid-container">
 					<PokemonCard pokemon={p} selected={p.id === selected} animated={props.animated}></PokemonCard>
 				</Grid>
