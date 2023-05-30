@@ -1,6 +1,6 @@
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { capitalizeFirstLetter, getBestSprite } from "../../Helper";
-import { PokemonType } from "../pokemon_type/PokemonType";
+import { capitalizeFirstLetter, getBestSprite } from "../../../Helper";
+import { PokemonType } from "../../type/Type";
 
 import "./PokemonCard.css";
 

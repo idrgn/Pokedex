@@ -1,6 +1,6 @@
 import { Toll } from "@mui/icons-material";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { getItemText, getLightColor } from "../../Helper";
+import { getItemText, getLightColor } from "../../../Helper";
 
 import "./ItemCard.css";
 

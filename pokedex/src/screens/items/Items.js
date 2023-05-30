@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 import { Pokedex } from "../../API";
 import { customConcat } from "../../Helper";
-import { ItemGrid } from "../../components/card_grid/CardGrid";
-import { ItemDetail } from "../../components/item_detail/ItemDetail";
+import { ItemDetail } from "../../components/item/item_detail/ItemDetail";
+import { ItemGrid } from "../../components/item/item_grid/ItemGrid";
 import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
 
 import "./Items.css";
