@@ -69,7 +69,7 @@ export const PokemonDetail = (props) => {
 								<Typography sx={{ marginLeft: "5px" }}>{getName(a.names)}</Typography>
 							</Tooltip>
 
-							{isHiddenAbility(a.pokemon, props.pokemon.name) ? <VisibilityOff sx={{ marginLeft: "5px" }} fontSize="14px" color="disabled" /> : <></>}
+							{isHiddenAbility(a.pokemon, props.pokemon.name) ? <VisibilityOff sx={{ marginLeft: "10px" }} fontSize="14px" color="disabled" /> : <></>}
 						</Box>
 					))}
 				</CardContent>
