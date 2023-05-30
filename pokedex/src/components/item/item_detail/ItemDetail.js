@@ -1,5 +1,5 @@
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { getFlavorText, getName } from "../../../Helper";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { getFlavorText, getLightColor, getName } from "../../../Helper";
 
 import "./ItemDetail.css";
 
@@ -15,22 +15,26 @@ export const ItemDetail = (props) => {
 	}
 
 	return (
-		<Card sx={{ display: "flex", flexDirection: "column", justifyContent: "space-around" }}>
-			<CardContent>
-				<Box sx={{ display: "flex", justifyContent: "space-around", marginBottom: "20px", marginTop: "30px" }}>
-					<CardMedia sx={{ height: "175px", width: "100%", paddingTop: "0.25em", objectFit: "contain" }} component="img" image={props.item.sprites.default} alt={getName(props.item.names)} />
-				</Box>
+		<Card sx={{ backgroundColor: getLightColor("lightgreen") }} className="item-detail-container">
+			<CardContent className="item-detail-box">
+				<CardMedia sx={{ height: "100px", width: "100%", objectFit: "contain" }} component="img" image={props.item.sprites.default} alt={getName(props.item.names)} />
+			</CardContent>
 
-				<Typography sx={{ fontSize: 14, textAlign: "center" }} color="text.secondary" gutterBottom>
-					Nº {props.item.id}
-				</Typography>
-
+			<CardContent className="item-detail-box">
 				<Typography sx={{ textAlign: "center" }} variant="h4" component="div">
 					{getName(props.item.names)}
 				</Typography>
+			</CardContent>
 
+			<CardContent className="item-detail-box">
 				<Typography sx={{ textAlign: "center", padding: "20px" }} variant="body2" component="div">
 					{getFlavorText(props.item.flavor_text_entries)}
+				</Typography>
+			</CardContent>
+
+			<CardContent className="item-detail-box">
+				<Typography sx={{ fontSize: 14, textAlign: "center" }} color="text.secondary" gutterBottom>
+					Nº {props.item.id}
 				</Typography>
 			</CardContent>
 		</Card>

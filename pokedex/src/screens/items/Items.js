@@ -9,7 +9,7 @@ import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElem
 import "./Items.css";
 
 export const Items = () => {
-	const amountPerPage = 10;
+	const amountPerPage = 30;
 
 	const [isDataLoaded, setIsDataLoaded] = useState(false);
 	const [isLoadingNew, setIsLoadingNew] = useState(false);
@@ -58,9 +58,7 @@ export const Items = () => {
 		<div className="contenedor-principal-listado">
 			<h1 className="titulo-listado">{itemData ? `Listado de Objetos (${itemData.count} entradas)` : "Listado de Objetos"}</h1>
 			<div className="contenedor-listado-detalle items">
-				<div className="contenedor-detalle items">
-					<ItemDetail item={selectedItem} />
-				</div>
+				<div className="contenedor-detalle items">{selectedItem != null ? <ItemDetail item={selectedItem} /> : <></>}</div>
 				<div className="contenedor-lista-wrapper items">
 					<div className="contenedor-lista">
 						<div className="contenedor-cuadricula">
