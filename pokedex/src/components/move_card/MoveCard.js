@@ -10,6 +10,7 @@ export const MoveCard = (props) => {
 				<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
 					Nº {props.move.id}
 				</Typography>
+				<Typography sx={{ fontSize: 14 }}>Nº {props.move.name}</Typography>
 			</CardContent>
 		</Card>
 	);
