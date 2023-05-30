@@ -1,7 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Autocomplete, FormControlLabel, Switch, TextField } from "@mui/material";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { api_pokemon } from "../../API";
+import { Pokedex } from "../../API";
 import { capitalizeFirstLetter, customConcat } from "../../Helper";
 import { PokemonGrid } from "../../components/card_grid/CardGrid";
 import { PokemonDetail } from "../../components/pokemon_detail/PokemonDetail";
@@ -21,57 +21,37 @@ export const Pokemons = () => {
 	const [selectedPokemon, setSelectedPokemon] = useState(null);
 	const [selectedPokemonDetail, setSelectedPokemonDetail] = useState(null);
 	const [processedPokemonList, setProcessedPokemonList] = useState([]);
-	const [, setUnprocessedList] = useState([]);
 	const [searchValue, setSearchValue] = useState(null);
 	const [searchInputValue, setSearchInputValue] = useState("");
 
-	async function makeRequests(index, data) {
-		const requests = [];
+	async function makeRequests() {
+		const dataToProcess = pokemonData.results.map((obj) => obj.url).slice(currentIndex, currentIndex + amountPerPage);
+		Pokedex.resource(dataToProcess)
+			.then((response) => {
+				setProcessedPokemonList((prevList) => customConcat(prevList, response));
+				setIsLoadingNew(false);
+			})
+			.catch((error) => {
+				setCurrentIndex((prevIndex) => prevIndex - amountPerPage);
+				setIsLoadingNew(false);
+			});
+	}
 
-		for (let entry of data.results.slice(index, index + amountPerPage)) {
-			requests.push(
-				axios
-					.get(entry.url)
-					.then((response) => {
-						if (response.status === 200) {
-							setProcessedPokemonList((prevList) => customConcat(prevList, response.data));
-						}
-					})
-					.catch((error) => {
-						setUnprocessedList((prevList) => customConcat(prevList, entry.url));
-					})
-			);
-		}
-
-		try {
-			await Promise.all(requests);
-		} catch (error) {
-			setCurrentIndex((prevIndex) => prevIndex - amountPerPage);
-		} finally {
-			setIsLoadingNew(false);
-		}
+	function mapPokemonList(p) {
+		const pokemonId = p.url.split("/pokemon/")[1].slice(0, -1);
+		return {
+			label: `${pokemonId} - ${capitalizeFirstLetter(p.name)}`,
+			id: pokemonId,
+		};
 	}
 
 	// Obtener la lista de Pokémon al cargar la página
 	useEffect(() => {
-		axios
-			.get(`${api_pokemon}pokemon?limit=100000&offset=0`)
+		Pokedex.getPokemonsList()
 			.then((response) => {
-				if (response.status === 200) {
-					setPokemonData(response.data);
-
-					setAutocompleteData(
-						response.data.results.map((p) => {
-							const pokemonId = p.url.split("/pokemon/")[1].slice(0, -1);
-							return {
-								label: `${pokemonId} - ${capitalizeFirstLetter(p.name)}`,
-								id: pokemonId,
-							};
-						})
-					);
-
-					setIsDataLoaded(true);
-				}
+				setPokemonData(response);
+				setIsDataLoaded(true);
+				setAutocompleteData(response.results.map(mapPokemonList));
 			})
 			.catch((error) => {
 				setPokemonData([]);
@@ -80,31 +60,24 @@ export const Pokemons = () => {
 
 	// Cargar nuevos Pokémon al cambiar de índice
 	useEffect(() => {
-		if (pokemonData === null) return;
-		makeRequests(currentIndex, pokemonData);
+		if (pokemonData !== null) makeRequests();
 	}, [currentIndex, pokemonData]);
 
 	// Evento que se ejecuta al cambiar el Pokémon seleccionado en el menú superior
 	useEffect(() => {
 		if (searchValue === null) return;
 
-		axios
-			.get(`${api_pokemon}pokemon/${searchValue.id}`)
+		Pokedex.getPokemonByName(searchValue.id)
 			.then((response) => {
-				if (response.status === 200) {
-					setSelectedPokemon(response.data);
-				}
+				setSelectedPokemon(response);
 			})
 			.catch((error) => {
 				setSelectedPokemon(null);
 			});
 
-		axios
-			.get(`${api_pokemon}pokemon-species/${searchValue.id}`)
+		Pokedex.getPokemonSpeciesByName(searchValue.id)
 			.then((response) => {
-				if (response.status === 200) {
-					setSelectedPokemonDetail(response.data);
-				}
+				setSelectedPokemonDetail(response);
 			})
 			.catch((error) => {
 				setSelectedPokemonDetail(null);
@@ -125,12 +98,9 @@ export const Pokemons = () => {
 	const onSelectionChanged = (p) => {
 		setSelectedPokemon(p);
 
-		axios
-			.get(`${api_pokemon}pokemon-species/${p.id}`)
+		Pokedex.getPokemonSpeciesByName(p.id)
 			.then((response) => {
-				if (response.status === 200) {
-					setSelectedPokemonDetail(response.data);
-				}
+				setSelectedPokemonDetail(response);
 			})
 			.catch((error) => {
 				setSelectedPokemonDetail(null);

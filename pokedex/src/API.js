@@ -1,9 +1,8 @@
-/* eslint-disable no-unused-vars */
-// APIs creadas para el proyecto
-const api_local = "http://localhost:8000/";
-const api_remota = "http://api.pokedex.lekiam.net/";
+const P = require("pokeapi-js-wrapper");
 
-export const api_privada = api_remota;
+const customOptions = {
+	cache: true,
+	timeout: 10 * 1000,
+};
 
-// APIs públicas
-export const api_pokemon = "https://pokeapi.co/api/v2/";
+export const Pokedex = new P.Pokedex(customOptions);

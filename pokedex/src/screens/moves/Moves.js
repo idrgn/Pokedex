@@ -1,6 +1,6 @@
-import axios from "axios";
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { api_pokemon } from "../../API";
+import { Pokedex } from "../../API";
 import { customConcat } from "../../Helper";
 import { MoveGrid } from "../../components/card_grid/CardGrid";
 import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
@@ -17,46 +17,29 @@ export const Moves = () => {
 	const [processedMoveList, setProcessedMoveList] = useState([]);
 
 	async function makeRequests(index, data) {
-		const requests = [];
-
-		for (let entry of data.results.slice(index, index + amountPerPage)) {
-			requests.push(
-				axios.get(entry.url).then((response) => {
-					if (response.status === 200) {
-						setProcessedMoveList((prevList) => customConcat(prevList, response.data));
-					}
-				})
-			);
-		}
-
-		try {
-			await Promise.all(requests);
-		} catch (error) {
-			setCurrentIndex((prevIndex) => prevIndex - amountPerPage);
-		} finally {
-			setIsLoadingNew(false);
-		}
+		const dataToProcess = moveData.results.map((obj) => obj.url).slice(currentIndex, currentIndex + amountPerPage);
+		Pokedex.resource(dataToProcess)
+			.then((response) => {
+				setProcessedMoveList((prevList) => customConcat(prevList, response));
+				setIsLoadingNew(false);
+			})
+			.catch((error) => {
+				setCurrentIndex((prevIndex) => prevIndex - amountPerPage);
+				setIsLoadingNew(false);
+			});
 	}
 
 	// Obtener la lista de movimientos al cargar la página
 	useEffect(() => {
-		axios
-			.get(`${api_pokemon}move?limit=100000&offset=0`)
-			.then((response) => {
-				if (response.status === 200) {
-					setMoveData(response.data);
-					setIsDataLoaded(true);
-				}
-			})
-			.catch((error) => {
-				setMoveData([]);
-			});
+		Pokedex.getMovesList().then((response) => {
+			setMoveData(response);
+			setIsDataLoaded(true);
+		});
 	}, []);
 
 	// Cargar nuevos movimientos al cambiar de índice
 	useEffect(() => {
-		if (moveData === null) return;
-		makeRequests(currentIndex, moveData);
+		if (moveData !== null) makeRequests();
 	}, [currentIndex, moveData]);
 
 	// Evento que se ejecuta cuando el usuario llega al fondo de la lista
