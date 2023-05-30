@@ -1,12 +1,25 @@
 import { Height, Scale, Star, VisibilityOff } from "@mui/icons-material";
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { capitalizeFirstLetter, getBestSprite, getFlavorText, getGeneraText, getLightColor } from "../../../Helper";
+import { Box, Card, CardContent, CardMedia, Tooltip, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Pokedex } from "../../../API";
+import { capitalizeFirstLetter, getBestSprite, getFlavorText, getGeneraText, getLightColor, getName, isHiddenAbility } from "../../../Helper";
+import { PokemonType } from "../../type/Type";
 import { PokemonStats } from "../pokemon_stats/PokemonStats";
 
 import "./PokemonDetail.css";
-import { PokemonType } from "../../type/Type";
 
 export const PokemonDetail = (props) => {
+	const [abilities, setAbilities] = useState([]);
+
+	// Obtener la lista de Pokémon al cargar la página
+	useEffect(() => {
+		if (props.pokemon === null) return;
+		const dataToProcess = props.pokemon.abilities.map((a) => a.ability.url);
+		Pokedex.resource(dataToProcess).then((response) => {
+			setAbilities(response);
+		});
+	}, [props.pokemon]);
+
 	if (props.pokemon === null || props.detail === null) {
 		return (
 			<Card sx={{ height: "100%", minHeight: "80vh", display: "flex", flexDirection: "column", justifyContent: "space-around", justifyItems: "space-around" }}>
@@ -50,10 +63,13 @@ export const PokemonDetail = (props) => {
 				</Typography>
 
 				<CardContent sx={{ display: "flex", justifyContent: "space-around" }} className="ability-container">
-					{props.pokemon.abilities.map((a) => (
+					{abilities.map((a) => (
 						<Box className="ability-single">
-							<Typography>{capitalizeFirstLetter(a.ability.name)}</Typography>
-							{a.is_hidden ? <VisibilityOff sx={{ marginLeft: "5px" }} fontSize="14px" color="disabled" /> : <></>}
+							<Tooltip title={getFlavorText(a.flavor_text_entries)} placement="top">
+								<Typography sx={{ marginLeft: "5px" }}>{getName(a.names)}</Typography>
+							</Tooltip>
+
+							{isHiddenAbility(a.pokemon, props.pokemon.name) ? <VisibilityOff sx={{ marginLeft: "10px" }} fontSize="14px" color="disabled" /> : <></>}
 						</Box>
 					))}
 				</CardContent>
@@ -64,16 +80,16 @@ export const PokemonDetail = (props) => {
 
 				<CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
 					<Box className="measure-single">
-						<Height sx={{ marginRight: "10px" }} />
+						<Height sx={{ marginRight: "5px" }} />
 						<Typography sx={{ textAlign: "center" }} component="div">
-							{`Altura: ${props.pokemon.height} dm`}
+							{`Altura: ${props.pokemon.height * 10}cm`}
 						</Typography>
 					</Box>
 
 					<Box className="measure-single">
-						<Scale sx={{ marginRight: "10px" }} />
+						<Scale sx={{ marginRight: "5px" }} />
 						<Typography sx={{ textAlign: "center" }} component="div">
-							{`Peso: ${props.pokemon.weight} hg`}
+							{`Peso: ${props.pokemon.weight / 10}kg`}
 						</Typography>
 					</Box>
 				</CardContent>

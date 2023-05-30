@@ -109,7 +109,7 @@ export const Pokemons = () => {
 
 	return (
 		<div className="contenedor-principal-listado">
-			<h1 className="titulo-listado">Listado de Pokémons</h1>
+			<h1 className="titulo-listado">{pokemonData ? `Listado de Pokémons (${pokemonData.count} entradas)` : "Listado de Pokémons"}</h1>
 			<div className="contenedor-controles">
 				<FormControlLabel control={<Switch checked={loadGifs} onChange={loadGifsChanged} name="loadgif" />} label="Cargar imágenes animadas" />
 				<Autocomplete

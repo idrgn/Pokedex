@@ -81,7 +81,7 @@ export const getGeneraText = (genera) => {
 	return "Tipo desconocido...";
 };
 
-export const getItemText = (genera) => {
+export const getName = (genera) => {
 	let spanish = null;
 	let english = null;
 
@@ -105,4 +105,11 @@ export const getLightColor = (name) => {
 	}
 
 	return lighterColor.toString();
+};
+
+export const isHiddenAbility = (abilityPokemonData, pokemonName) => {
+	for (let entry of abilityPokemonData) {
+		if (entry.pokemon.name === pokemonName) return entry.is_hidden;
+	}
+	return false;
 };

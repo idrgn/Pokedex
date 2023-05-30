@@ -1,6 +1,6 @@
 import { Toll } from "@mui/icons-material";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { getItemText, getLightColor } from "../../../Helper";
+import { getName, getLightColor } from "../../../Helper";
 
 import "./ItemCard.css";
 
@@ -12,10 +12,10 @@ export const ItemCard = (props) => {
 					Nº {props.item.id}
 				</Typography>
 				<Typography variant="h5" component="div">
-					{getItemText(props.item.names)}
+					{getName(props.item.names)}
 				</Typography>
 			</CardContent>
-			<CardMedia component="img" height="75" width="75" image={props.item.sprites.default} alt={getItemText(props.item.names)} sx={{ paddingTop: "0.25em", objectFit: "contain" }} />
+			<CardMedia component="img" height="75" width="75" image={props.item.sprites.default} alt={getName(props.item.names)} sx={{ paddingTop: "0.25em", objectFit: "contain" }} />
 
 			<CardContent>
 				<Box sx={{ display: "flex", alignItems: "center" }}>
