@@ -2,10 +2,10 @@
 import { useEffect, useState } from "react";
 import { Pokedex } from "../../API";
 import { customConcat } from "../../Helper";
-import { MoveGrid } from "../../components/card_grid/CardGrid";
 import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
 
 import "./Moves.css";
+import { MoveGrid } from "../../components/move/move_grid/MoveGrid";
 
 export const Moves = () => {
 	const amountPerPage = 20;

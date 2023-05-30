@@ -3,9 +3,9 @@ import { Autocomplete, FormControlLabel, Switch, TextField } from "@mui/material
 import { useEffect, useState } from "react";
 import { Pokedex } from "../../API";
 import { capitalizeFirstLetter, customConcat } from "../../Helper";
-import { PokemonGrid } from "../../components/card_grid/CardGrid";
-import { PokemonDetail } from "../../components/pokemon_detail/PokemonDetail";
 import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
+import { PokemonDetail } from "../../components/pokemon/pokemon_detail/PokemonDetail";
+import { PokemonGrid } from "../../components/pokemon/pokemon_grid/PokemonGrid";
 
 import "./Pokemons.css";
 

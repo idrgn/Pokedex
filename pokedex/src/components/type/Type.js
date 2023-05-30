@@ -1,4 +1,4 @@
-import "./PokemonType.css";
+import "./Type.css";
 
 export const PokemonType = (props) => {
 	if (!props.hasOwnProperty("size")) return <span className={`span type ${props.type} med-size`} />;

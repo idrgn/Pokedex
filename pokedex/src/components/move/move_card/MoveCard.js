@@ -1,5 +1,5 @@
 import { Card, CardContent, Typography } from "@mui/material";
-import { getLightColor } from "../../Helper";
+import { getLightColor } from "../../../Helper";
 
 import "./MoveCard.css";
 

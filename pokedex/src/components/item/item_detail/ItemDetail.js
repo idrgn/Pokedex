@@ -1,5 +1,5 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { getFlavorText, getItemText } from "../../Helper";
+import { getFlavorText, getItemText } from "../../../Helper";
 
 import "./ItemDetail.css";
 

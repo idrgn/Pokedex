@@ -1,10 +1,10 @@
 import { Height, Scale, Star, VisibilityOff } from "@mui/icons-material";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { capitalizeFirstLetter, getBestSprite, getFlavorText, getGeneraText, getLightColor } from "../../Helper";
+import { capitalizeFirstLetter, getBestSprite, getFlavorText, getGeneraText, getLightColor } from "../../../Helper";
 import { PokemonStats } from "../pokemon_stats/PokemonStats";
-import { PokemonType } from "../pokemon_type/PokemonType";
 
 import "./PokemonDetail.css";
+import { PokemonType } from "../../type/Type";
 
 export const PokemonDetail = (props) => {
 	if (props.pokemon === null || props.detail === null) {
