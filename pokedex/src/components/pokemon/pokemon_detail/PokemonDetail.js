@@ -80,16 +80,16 @@ export const PokemonDetail = (props) => {
 
 				<CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
 					<Box className="measure-single">
-						<Height sx={{ marginRight: "10px" }} />
+						<Height sx={{ marginRight: "5px" }} />
 						<Typography sx={{ textAlign: "center" }} component="div">
-							{`Altura: ${props.pokemon.height} dm`}
+							{`Altura: ${props.pokemon.height * 10}cm`}
 						</Typography>
 					</Box>
 
 					<Box className="measure-single">
-						<Scale sx={{ marginRight: "10px" }} />
+						<Scale sx={{ marginRight: "5px" }} />
 						<Typography sx={{ textAlign: "center" }} component="div">
-							{`Peso: ${props.pokemon.weight} hg`}
+							{`Peso: ${props.pokemon.weight / 10}kg`}
 						</Typography>
 					</Box>
 				</CardContent>
