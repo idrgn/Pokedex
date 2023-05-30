@@ -12,6 +12,12 @@ span.type {
 	user-select: none;
 }
 
+span.type.sma-size {
+	margin-left: 3px;
+	margin-right: 3px;
+	text-align: center;
+}
+
 span.type.med-size {
 	width: 100%;
 	margin-left: 3px;
