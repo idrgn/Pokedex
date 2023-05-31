@@ -28,6 +28,7 @@ export const Pokemons = () => {
 	const [searchInputValueType, setSearchInputValueType] = useState("");
 
 	async function makeRequests() {
+		setIsLoadingNew(true);
 		const dataToProcess = pokemonData.results.map((obj) => obj.url).slice(currentIndex, currentIndex + amountPerPage);
 		Pokedex.resource(dataToProcess)
 			.then((response) => {
