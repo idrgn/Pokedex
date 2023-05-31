@@ -16,7 +16,7 @@ export const Moves = () => {
 	const [moveData, setMoveData] = useState(null);
 	const [processedMoveList, setProcessedMoveList] = useState([]);
 
-	async function makeRequests(index, data) {
+	async function makeRequests() {
 		setIsLoadingNew(true);
 		const dataToProcess = moveData.results.map((obj) => obj.url).slice(currentIndex, currentIndex + amountPerPage);
 		Pokedex.resource(dataToProcess)
