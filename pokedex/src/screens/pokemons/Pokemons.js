@@ -2,13 +2,14 @@
 import { Autocomplete, FormControlLabel, Switch, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Pokedex } from "../../API";
+import { PokemonTypes } from "../../Data";
 import { capitalizeFirstLetter, customConcat } from "../../Helper";
-import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
+import { LoadingIndicator } from "../../components/loading_indicator/LoadingIndicator";
 import { PokemonDetail } from "../../components/pokemon/pokemon_detail/PokemonDetail";
 import { PokemonGrid } from "../../components/pokemon/pokemon_grid/PokemonGrid";
+import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
 
 import "./Pokemons.css";
-import { PokemonTypes } from "../../Data";
 
 export const Pokemons = () => {
 	const amountPerPage = 20;
@@ -26,6 +27,7 @@ export const Pokemons = () => {
 	const [searchInputValue, setSearchInputValue] = useState("");
 	const [searchValueType, setSearchValueType] = useState(null);
 	const [searchInputValueType, setSearchInputValueType] = useState("");
+	const [endReached, setEndReached] = useState(false);
 
 	async function makeRequests() {
 		setIsLoadingNew(true);
@@ -64,7 +66,13 @@ export const Pokemons = () => {
 
 	// Cargar nuevos Pokémon al cambiar de índice
 	useEffect(() => {
-		if (pokemonData !== null) makeRequests();
+		if (pokemonData !== null) {
+			if (currentIndex > pokemonData.count) {
+				setEndReached(true);
+			} else {
+				makeRequests();
+			}
+		}
 	}, [currentIndex, pokemonData]);
 
 	// Evento que se ejecuta al cambiar el Pokémon seleccionado en el menú superior
@@ -159,6 +167,7 @@ export const Pokemons = () => {
 							<div className="lista-small-padding"></div>
 							<PokemonGrid onSelectionChanged={onSelectionChanged} pokemonData={processedPokemonList} animated={loadGifs} type={searchValueType}></PokemonGrid>
 							{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <div className="small-div"></div>}
+							{endReached ? <></> : <LoadingIndicator />}
 						</div>
 					</div>
 				</div>

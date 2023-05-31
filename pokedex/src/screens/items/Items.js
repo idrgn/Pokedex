@@ -4,6 +4,7 @@ import { Pokedex } from "../../API";
 import { customConcat } from "../../Helper";
 import { ItemDetail } from "../../components/item/item_detail/ItemDetail";
 import { ItemGrid } from "../../components/item/item_grid/ItemGrid";
+import { LoadingIndicator } from "../../components/loading_indicator/LoadingIndicator";
 import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
 
 import "./Items.css";
@@ -17,6 +18,7 @@ export const Items = () => {
 	const [itemData, setItemData] = useState(null);
 	const [selectedItem, setSelectedItem] = useState(null);
 	const [processedItemList, setProcessedItemList] = useState([]);
+	const [endReached, setEndReached] = useState(false);
 
 	async function makeRequests() {
 		setIsLoadingNew(true);
@@ -42,7 +44,13 @@ export const Items = () => {
 
 	// Cargar nuevos objetos al cambiar de índice
 	useEffect(() => {
-		if (itemData !== null) makeRequests();
+		if (itemData !== null) {
+			if (currentIndex > itemData.count) {
+				setEndReached(true);
+			} else {
+				makeRequests();
+			}
+		}
 	}, [currentIndex, itemData]);
 
 	// Evento que se ejecuta cuando el usuario llega al fondo de la lista
@@ -66,6 +74,7 @@ export const Items = () => {
 							<div className="lista-small-padding"></div>
 							<ItemGrid onSelectionChanged={onSelectionChanged} itemData={processedItemList} />
 							{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <div className="small-div"></div>}
+							{endReached ? <></> : <LoadingIndicator />}
 						</div>
 					</div>
 				</div>
