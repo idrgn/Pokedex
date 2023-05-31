@@ -158,7 +158,7 @@ export const Pokemons = () => {
 						<div className="contenedor-cuadricula">
 							<div className="lista-small-padding"></div>
 							<PokemonGrid onSelectionChanged={onSelectionChanged} pokemonData={processedPokemonList} animated={loadGifs} type={searchValueType}></PokemonGrid>
-							{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
+							{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <div className="small-div"></div>}
 						</div>
 					</div>
 				</div>

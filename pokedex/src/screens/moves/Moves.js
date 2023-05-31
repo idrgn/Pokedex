@@ -56,7 +56,7 @@ export const Moves = () => {
 					<div className="contenedor-cuadricula">
 						<div className="lista-small-padding"></div>
 						<MoveGrid moveData={processedMoveList} />
-						{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
+						{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <div className="small-div"></div>}
 					</div>
 				</div>
 			</div>

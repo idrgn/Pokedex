@@ -65,7 +65,7 @@ export const Items = () => {
 						<div className="contenedor-cuadricula">
 							<div className="lista-small-padding"></div>
 							<ItemGrid onSelectionChanged={onSelectionChanged} itemData={processedItemList} />
-							{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
+							{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <div className="small-div"></div>}
 						</div>
 					</div>
 				</div>
