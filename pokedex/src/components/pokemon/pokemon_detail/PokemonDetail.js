@@ -79,19 +79,23 @@ export const PokemonDetail = (props) => {
 				</CardContent>
 
 				<CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
-					<Box className="measure-single">
-						<Height sx={{ marginRight: "5px" }} />
-						<Typography sx={{ textAlign: "center" }} component="div">
-							{`Altura: ${props.pokemon.height * 10}cm`}
-						</Typography>
-					</Box>
+					<Tooltip title="Altura" placement="top">
+						<Box className="measure-single">
+							<Height sx={{ marginRight: "5px", marginLeft: "7px" }} />
+							<Typography sx={{ textAlign: "center" }} component="div">
+								{`${props.pokemon.height * 10}cm`}
+							</Typography>
+						</Box>
+					</Tooltip>
 
-					<Box className="measure-single">
-						<Scale sx={{ marginRight: "5px" }} />
-						<Typography sx={{ textAlign: "center" }} component="div">
-							{`Peso: ${props.pokemon.weight / 10}kg`}
-						</Typography>
-					</Box>
+					<Tooltip title="Peso" placement="top">
+						<Box className="measure-single">
+							<Scale sx={{ marginRight: "5px", marginLeft: "14px" }} />
+							<Typography sx={{ textAlign: "center" }} component="div">
+								{`${props.pokemon.weight / 10}kg`}
+							</Typography>
+						</Box>
+					</Tooltip>
 				</CardContent>
 			</CardContent>
 		</Card>
