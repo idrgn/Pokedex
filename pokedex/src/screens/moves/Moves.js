@@ -2,10 +2,11 @@
 import { useEffect, useState } from "react";
 import { Pokedex } from "../../API";
 import { customConcat } from "../../Helper";
+import { LoadingIndicator } from "../../components/loading_indicator/LoadingIndicator";
+import { MoveGrid } from "../../components/move/move_grid/MoveGrid";
 import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
 
 import "./Moves.css";
-import { MoveGrid } from "../../components/move/move_grid/MoveGrid";
 
 export const Moves = () => {
 	const amountPerPage = 30;
@@ -15,8 +16,10 @@ export const Moves = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [moveData, setMoveData] = useState(null);
 	const [processedMoveList, setProcessedMoveList] = useState([]);
+	const [endReached, setEndReached] = useState(false);
 
-	async function makeRequests(index, data) {
+	async function makeRequests() {
+		setIsLoadingNew(true);
 		const dataToProcess = moveData.results.map((obj) => obj.url).slice(currentIndex, currentIndex + amountPerPage);
 		Pokedex.resource(dataToProcess)
 			.then((response) => {
@@ -39,7 +42,13 @@ export const Moves = () => {
 
 	// Cargar nuevos movimientos al cambiar de índice
 	useEffect(() => {
-		if (moveData !== null) makeRequests();
+		if (moveData !== null) {
+			if (currentIndex > moveData.count) {
+				setEndReached(true);
+			} else {
+				makeRequests();
+			}
+		}
 	}, [currentIndex, moveData]);
 
 	// Evento que se ejecuta cuando el usuario llega al fondo de la lista
@@ -55,7 +64,8 @@ export const Moves = () => {
 					<div className="contenedor-cuadricula">
 						<div className="lista-small-padding"></div>
 						<MoveGrid moveData={processedMoveList} />
-						{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
+						{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <div className="small-div"></div>}
+						{endReached ? <></> : <LoadingIndicator />}
 					</div>
 				</div>
 			</div>

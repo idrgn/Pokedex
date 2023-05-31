@@ -2,10 +2,12 @@
 import { Autocomplete, FormControlLabel, Switch, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Pokedex } from "../../API";
+import { PokemonTypes } from "../../Data";
 import { capitalizeFirstLetter, customConcat } from "../../Helper";
-import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
+import { LoadingIndicator } from "../../components/loading_indicator/LoadingIndicator";
 import { PokemonDetail } from "../../components/pokemon/pokemon_detail/PokemonDetail";
 import { PokemonGrid } from "../../components/pokemon/pokemon_grid/PokemonGrid";
+import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
 
 import "./Pokemons.css";
 
@@ -23,8 +25,12 @@ export const Pokemons = () => {
 	const [processedPokemonList, setProcessedPokemonList] = useState([]);
 	const [searchValue, setSearchValue] = useState(null);
 	const [searchInputValue, setSearchInputValue] = useState("");
+	const [searchValueType, setSearchValueType] = useState(null);
+	const [searchInputValueType, setSearchInputValueType] = useState("");
+	const [endReached, setEndReached] = useState(false);
 
 	async function makeRequests() {
+		setIsLoadingNew(true);
 		const dataToProcess = pokemonData.results.map((obj) => obj.url).slice(currentIndex, currentIndex + amountPerPage);
 		Pokedex.resource(dataToProcess)
 			.then((response) => {
@@ -60,7 +66,13 @@ export const Pokemons = () => {
 
 	// Cargar nuevos Pokémon al cambiar de índice
 	useEffect(() => {
-		if (pokemonData !== null) makeRequests();
+		if (pokemonData !== null) {
+			if (currentIndex > pokemonData.count) {
+				setEndReached(true);
+			} else {
+				makeRequests();
+			}
+		}
 	}, [currentIndex, pokemonData]);
 
 	// Evento que se ejecuta al cambiar el Pokémon seleccionado en el menú superior
@@ -111,8 +123,26 @@ export const Pokemons = () => {
 		<div className="contenedor-principal-listado">
 			<h1 className="titulo-listado">{pokemonData ? `Listado de Pokémons (${pokemonData.count} entradas)` : "Listado de Pokémons"}</h1>
 			<div className="contenedor-controles">
-				<FormControlLabel control={<Switch checked={loadGifs} onChange={loadGifsChanged} name="loadgif" />} label="Cargar imágenes animadas" />
+				<FormControlLabel className="control control-pokemon-gif" control={<Switch checked={loadGifs} onChange={loadGifsChanged} name="loadgif" />} label="Cargar imágenes animadas" />
 				<Autocomplete
+					className="control"
+					value={searchValueType}
+					onChange={(event, newValue) => {
+						setSearchValueType(newValue);
+					}}
+					inputValue={searchInputValueType}
+					onInputChange={(event, newInputValue) => {
+						setSearchInputValueType(newInputValue);
+					}}
+					disablePortal
+					id="combo-box-types"
+					options={PokemonTypes}
+					sx={{ width: 300 }}
+					renderInput={(params) => <TextField {...params} label="Filtrar por tipo" />}
+				/>
+
+				<Autocomplete
+					className="control"
 					value={searchValue}
 					onChange={(event, newValue) => {
 						setSearchValue(newValue);
@@ -122,10 +152,10 @@ export const Pokemons = () => {
 						setSearchInputValue(newInputValue);
 					}}
 					disablePortal
-					id="combo-box"
+					id="combo-box-pokemon"
 					options={autocompleteData}
 					sx={{ width: 300 }}
-					renderInput={(params) => <TextField {...params} label="Pokémon" />}
+					renderInput={(params) => <TextField {...params} label="Buscar Pokémon" />}
 				/>
 			</div>
 
@@ -134,8 +164,9 @@ export const Pokemons = () => {
 					<div className="contenedor-lista">
 						<div className="contenedor-cuadricula">
 							<div className="lista-small-padding"></div>
-							<PokemonGrid onSelectionChanged={onSelectionChanged} pokemonData={processedPokemonList} animated={loadGifs}></PokemonGrid>
-							{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <></>}
+							<PokemonGrid onSelectionChanged={onSelectionChanged} pokemonData={processedPokemonList} animated={loadGifs} type={searchValueType}></PokemonGrid>
+							{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <div className="small-div"></div>}
+							{endReached ? <></> : <LoadingIndicator />}
 						</div>
 					</div>
 				</div>

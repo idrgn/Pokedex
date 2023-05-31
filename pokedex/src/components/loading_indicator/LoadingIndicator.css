@@ -1,0 +1,17 @@
+.loading-indicator-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.loading-indicator-button {
+	width: 100%;
+	padding: 20px;
+	margin: 10px;
+}
+
+@media screen and (max-width: 480px) {
+	.loading-indicator-button {
+		width: 90%;
+	}
+}
