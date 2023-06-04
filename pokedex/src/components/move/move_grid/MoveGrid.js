@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import { useState } from "react";
 import { MoveCard } from "../move_card/MoveCard";
+import { getName } from "../../../Helper";
 
 export const MoveGrid = (props) => {
 	const [selected, setSelected] = useState(null);
@@ -19,6 +20,12 @@ export const MoveGrid = (props) => {
 	if (props.type !== null) {
 		moveData = moveData.filter((m) => {
 			return props.type.id === m.type.name;
+		});
+	}
+
+	if (props.name !== null) {
+		moveData = moveData.filter((m) => {
+			return getName(m.names).toLowerCase().includes(props.name.toLowerCase());
 		});
 	}
 

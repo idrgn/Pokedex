@@ -21,6 +21,7 @@ export const Moves = () => {
 	const [searchValueType, setSearchValueType] = useState(null);
 	const [searchInputValueType, setSearchInputValueType] = useState("");
 	const [endReached, setEndReached] = useState(false);
+	const [searchText, setSearchText] = useState(null);
 
 	async function makeRequests() {
 		setIsLoadingNew(true);
@@ -65,6 +66,15 @@ export const Moves = () => {
 			<h1 className="titulo-listado">{moveData ? `Listado de Movimientos (${moveData.count} entradas)` : "Listado de Objetos"}</h1>
 
 			<div className="contenedor-controles">
+				<TextField
+					id="text-field-name"
+					label="Filtrar por nombre"
+					variant="outlined"
+					onChange={(e) => {
+						setSearchText(e.target.value);
+					}}
+				/>
+
 				<Autocomplete
 					className="control"
 					value={searchValueType}
@@ -87,7 +97,7 @@ export const Moves = () => {
 				<div className="contenedor-lista">
 					<div className="contenedor-cuadricula">
 						<div className="lista-small-padding"></div>
-						<MoveGrid moveData={processedMoveList} type={searchValueType} />
+						<MoveGrid moveData={processedMoveList} type={searchValueType} name={searchText} />
 						{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <div className="small-div"></div>}
 						{endReached ? <></> : <LoadingIndicator />}
 					</div>
