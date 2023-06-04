@@ -14,9 +14,17 @@ export const MoveGrid = (props) => {
 		}
 	};
 
+	let moveData = props.moveData;
+
+	if (props.type !== null) {
+		moveData = moveData.filter((m) => {
+			return props.type.id === m.type.name;
+		});
+	}
+
 	return (
 		<Grid container rowSpacing={{ xs: 1, sm: 2, md: 3 }} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ display: "flex", justifyContent: "center" }}>
-			{props.moveData.map((m) => (
+			{moveData.map((m) => (
 				<Grid item onClick={() => onSelect(m)} className="item-grid-container">
 					<MoveCard move={m} selected={m.id === selected}></MoveCard>
 				</Grid>

@@ -7,6 +7,8 @@ import { MoveGrid } from "../../components/move/move_grid/MoveGrid";
 import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
 
 import "./Moves.css";
+import { Autocomplete, TextField } from "@mui/material";
+import { PokemonTypes } from "../../Data";
 
 export const Moves = () => {
 	const amountPerPage = 30;
@@ -16,6 +18,8 @@ export const Moves = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [moveData, setMoveData] = useState(null);
 	const [processedMoveList, setProcessedMoveList] = useState([]);
+	const [searchValueType, setSearchValueType] = useState(null);
+	const [searchInputValueType, setSearchInputValueType] = useState("");
 	const [endReached, setEndReached] = useState(false);
 
 	async function makeRequests() {
@@ -59,11 +63,31 @@ export const Moves = () => {
 	return (
 		<div className="contenedor-principal-listado">
 			<h1 className="titulo-listado">{moveData ? `Listado de Movimientos (${moveData.count} entradas)` : "Listado de Objetos"}</h1>
+
+			<div className="contenedor-controles">
+				<Autocomplete
+					className="control"
+					value={searchValueType}
+					onChange={(event, newValue) => {
+						setSearchValueType(newValue);
+					}}
+					inputValue={searchInputValueType}
+					onInputChange={(event, newInputValue) => {
+						setSearchInputValueType(newInputValue);
+					}}
+					disablePortal
+					id="combo-box-types"
+					options={PokemonTypes}
+					sx={{ width: 300 }}
+					renderInput={(params) => <TextField {...params} label="Filtrar por tipo" />}
+				/>
+			</div>
+
 			<div className="contenedor-lista-wrapper moves">
 				<div className="contenedor-lista">
 					<div className="contenedor-cuadricula">
 						<div className="lista-small-padding"></div>
-						<MoveGrid moveData={processedMoveList} />
+						<MoveGrid moveData={processedMoveList} type={searchValueType} />
 						{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <div className="small-div"></div>}
 						{endReached ? <></> : <LoadingIndicator />}
 					</div>
