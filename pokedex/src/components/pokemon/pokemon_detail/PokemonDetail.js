@@ -1,15 +1,17 @@
 import { Height, Scale, Star, VisibilityOff } from "@mui/icons-material";
-import { Box, Card, CardContent, CardMedia, Tooltip, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, CardMedia, Tooltip, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Pokedex } from "../../../API";
 import { capitalizeFirstLetter, getBestSprite, getFlavorText, getGeneraText, getLightColor, getName, isHiddenAbility } from "../../../Helper";
 import { Type } from "../../type/Type";
 import { PokemonStats } from "../pokemon_stats/PokemonStats";
+import { useNavigate } from "react-router-dom";
 
 import "./PokemonDetail.css";
 
 export const PokemonDetail = (props) => {
 	const [abilities, setAbilities] = useState([]);
+	const navigate = useNavigate();
 
 	// Obtener la lista de Pokémon al cargar la página
 	useEffect(() => {
@@ -96,6 +98,20 @@ export const PokemonDetail = (props) => {
 							</Typography>
 						</Box>
 					</Tooltip>
+				</CardContent>
+
+				<CardContent>
+					<Button
+						sx={{ width: "100%" }}
+						variant="contained"
+						color="moves"
+						onClick={() => {
+							window.scrollTo(0, 0);
+							navigate(`/moves/${props.pokemon.name}`);
+						}}
+					>
+						Ver movimientos
+					</Button>
 				</CardContent>
 			</CardContent>
 		</Card>

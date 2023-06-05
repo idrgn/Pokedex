@@ -4,3 +4,13 @@
 	padding: 8px;
 	padding-right: 20px;
 }
+
+.contenedor-detalle.pokemon {
+	height: auto;
+}
+
+.contenedor-lista-wrapper.pokemon,
+.contenedor-lista.pokemon {
+	height: 55em;
+	margin: 0em;
+}

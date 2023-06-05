@@ -160,8 +160,8 @@ export const Pokemons = () => {
 			</div>
 
 			<div className="contenedor-listado-detalle">
-				<div className="contenedor-lista-wrapper">
-					<div className="contenedor-lista">
+				<div className="contenedor-lista-wrapper pokemon">
+					<div className="contenedor-lista pokemon">
 						<div className="contenedor-cuadricula">
 							<div className="lista-small-padding"></div>
 							<PokemonGrid onSelectionChanged={onSelectionChanged} pokemonData={processedPokemonList} animated={loadGifs} type={searchValueType}></PokemonGrid>
@@ -170,7 +170,7 @@ export const Pokemons = () => {
 						</div>
 					</div>
 				</div>
-				<div className="contenedor-detalle">
+				<div className="contenedor-detalle pokemon">
 					<PokemonDetail pokemon={selectedPokemon} detail={selectedPokemonDetail} />
 				</div>
 			</div>
