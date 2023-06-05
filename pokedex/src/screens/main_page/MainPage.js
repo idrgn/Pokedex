@@ -1,4 +1,6 @@
 import { Button, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 import "./MainPage.css";
 
 /**
@@ -7,6 +9,8 @@ import "./MainPage.css";
  * @returns
  */
 export const MainPage = (props) => {
+	const navigate = useNavigate();
+
 	return (
 		<div className="main-page-container">
 			<div className="main-page-content">
@@ -20,9 +24,30 @@ export const MainPage = (props) => {
 
 				<div className="main-page-separator" />
 
-				<Button>Pokémons</Button>
-				<Button>Movimientos</Button>
-				<Button>Objetos</Button>
+				<Button
+					onClick={() => {
+						window.scrollTo(0, 0);
+						navigate(`/pokemons`);
+					}}
+				>
+					Pokémons
+				</Button>
+				<Button
+					onClick={() => {
+						window.scrollTo(0, 0);
+						navigate(`/moves`);
+					}}
+				>
+					Movimientos
+				</Button>
+				<Button
+					onClick={() => {
+						window.scrollTo(0, 0);
+						navigate(`/items`);
+					}}
+				>
+					Objetos
+				</Button>
 			</div>
 		</div>
 	);
