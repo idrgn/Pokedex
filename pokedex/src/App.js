@@ -1,9 +1,8 @@
-import { Route, Routes } from "react-router-dom";
-
-import { Items } from "./screens/items/Items";
-// import { MainPage } from "./screens/main_page/MainPage";
 import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material";
+import { Route, Routes } from "react-router-dom";
+import { Items } from "./screens/items/Items";
+import { MainPage } from "./screens/main_page/MainPage";
 import { Moves } from "./screens/moves/Moves";
 import { NotFound } from "./screens/not_found/NotFound";
 import { Pokemons } from "./screens/pokemons/Pokemons";
@@ -24,7 +23,7 @@ function App() {
 			<div className="main-container">
 				<div className="page-container">
 					<Routes>
-						<Route path="" element={<Pokemons />}></Route>
+						<Route path="" element={<MainPage />}></Route>
 						<Route path="/pokemons" element={<Pokemons />}></Route>
 						<Route path="/items" element={<Items />}></Route>
 						<Route path="/moves" element={<Moves />}></Route>
