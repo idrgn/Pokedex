@@ -1,16 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { Autocomplete, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Pokedex } from "../../API";
+import { PokemonTypes } from "../../Data";
 import { capitalizeFirstLetter, customConcat } from "../../Helper";
 import { LoadingIndicator } from "../../components/loading_indicator/LoadingIndicator";
 import { MoveGrid } from "../../components/move/move_grid/MoveGrid";
 import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
-import { Autocomplete, TextField } from "@mui/material";
-import { PokemonTypes } from "../../Data";
 
 import "./Moves.css";
 
 export const Moves = () => {
+	const params = useParams();
+
 	const amountPerPage = 30;
 
 	const [isDataLoaded, setIsDataLoaded] = useState(false);
@@ -78,7 +81,7 @@ export const Moves = () => {
 
 	return (
 		<div className="contenedor-principal-listado">
-			<h1 className="titulo-listado">{moveData ? `Listado de Movimientos (${moveData.count} entradas)` : "Listado de Objetos"}</h1>
+			<h1 className="titulo-listado">{params.pokemon ? `Listado de Movimientos de ${capitalizeFirstLetter(params.pokemon)}` : moveData ? `Listado de Movimientos (${moveData.count} entradas)` : "Listado de Movimientos"}</h1>
 
 			<div className="contenedor-controles">
 				<TextField
@@ -91,6 +94,7 @@ export const Moves = () => {
 				/>
 
 				<Autocomplete
+					hidden={params.pokemon != null}
 					className="control"
 					value={searchValue}
 					onChange={(event, newValue) => {
@@ -129,7 +133,7 @@ export const Moves = () => {
 				<div className="contenedor-lista">
 					<div className="contenedor-cuadricula">
 						<div className="lista-small-padding"></div>
-						<MoveGrid moveData={processedMoveList} type={searchValueType} name={searchText} pokemon={searchValue} />
+						<MoveGrid moveData={processedMoveList} type={searchValueType} name={searchText} pokemon={params.pokemon ? { id: params.pokemon } : searchValue} />
 						{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <div className="small-div"></div>}
 						{endReached ? <></> : <LoadingIndicator />}
 					</div>
