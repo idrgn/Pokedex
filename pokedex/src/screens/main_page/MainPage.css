@@ -1,0 +1,18 @@
+.main-page-container {
+	position: absolute;
+	left: 0px;
+	width: 100vw;
+	height: 100vh;
+}
+
+.main-page-content {
+	position: relative;
+	left: 50%;
+	top: 40%;
+	transform: translateX(-50%);
+	text-align: center;
+}
+
+.main-page-separator {
+	height: 30px;
+}
