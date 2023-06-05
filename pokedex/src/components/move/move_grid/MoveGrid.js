@@ -23,6 +23,16 @@ export const MoveGrid = (props) => {
 		});
 	}
 
+	if (props.pokemon !== null) {
+		moveData = moveData.filter((m) => {
+			const learnedBy = m.learned_by_pokemon.map((e) => {
+				return e.name;
+			});
+
+			return learnedBy.includes(props.pokemon.id);
+		});
+	}
+
 	if (props.name !== null) {
 		moveData = moveData.filter((m) => {
 			return getName(m.names).toLowerCase().includes(props.name.toLowerCase());

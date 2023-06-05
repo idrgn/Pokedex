@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Pokedex } from "../../API";
-import { customConcat } from "../../Helper";
+import { capitalizeFirstLetter, customConcat } from "../../Helper";
 import { LoadingIndicator } from "../../components/loading_indicator/LoadingIndicator";
 import { MoveGrid } from "../../components/move/move_grid/MoveGrid";
 import { ScrollToElement } from "../../components/scroll_to_element/ScrollToElement";
-
-import "./Moves.css";
 import { Autocomplete, TextField } from "@mui/material";
 import { PokemonTypes } from "../../Data";
+
+import "./Moves.css";
 
 export const Moves = () => {
 	const amountPerPage = 30;
@@ -18,6 +18,9 @@ export const Moves = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [moveData, setMoveData] = useState(null);
 	const [processedMoveList, setProcessedMoveList] = useState([]);
+	const [autocompleteData, setAutocompleteData] = useState([]);
+	const [searchValue, setSearchValue] = useState(null);
+	const [searchInputValue, setSearchInputValue] = useState("");
 	const [searchValueType, setSearchValueType] = useState(null);
 	const [searchInputValueType, setSearchInputValueType] = useState("");
 	const [endReached, setEndReached] = useState(false);
@@ -37,11 +40,23 @@ export const Moves = () => {
 			});
 	}
 
+	function mapPokemonList(p) {
+		const pokemonId = p.url.split("/pokemon/")[1].slice(0, -1);
+		return {
+			label: `${pokemonId} - ${capitalizeFirstLetter(p.name)}`,
+			id: p.name,
+		};
+	}
+
 	// Obtener la lista de movimientos al cargar la página
 	useEffect(() => {
 		Pokedex.getMovesList().then((response) => {
 			setMoveData(response);
 			setIsDataLoaded(true);
+		});
+
+		Pokedex.getPokemonsList().then((response) => {
+			setAutocompleteData(response.results.map(mapPokemonList));
 		});
 	}, []);
 
@@ -77,6 +92,23 @@ export const Moves = () => {
 
 				<Autocomplete
 					className="control"
+					value={searchValue}
+					onChange={(event, newValue) => {
+						setSearchValue(newValue);
+					}}
+					inputValue={searchInputValue}
+					onInputChange={(event, newInputValue) => {
+						setSearchInputValue(newInputValue);
+					}}
+					disablePortal
+					id="combo-box-pokemon"
+					options={autocompleteData}
+					sx={{ width: 300 }}
+					renderInput={(params) => <TextField {...params} label="Buscar por Pokémon" />}
+				/>
+
+				<Autocomplete
+					className="control"
 					value={searchValueType}
 					onChange={(event, newValue) => {
 						setSearchValueType(newValue);
@@ -97,7 +129,7 @@ export const Moves = () => {
 				<div className="contenedor-lista">
 					<div className="contenedor-cuadricula">
 						<div className="lista-small-padding"></div>
-						<MoveGrid moveData={processedMoveList} type={searchValueType} name={searchText} />
+						<MoveGrid moveData={processedMoveList} type={searchValueType} name={searchText} pokemon={searchValue} />
 						{isDataLoaded && !isLoadingNew ? <ScrollToElement onScrollToElement={onScroll} /> : <div className="small-div"></div>}
 						{endReached ? <></> : <LoadingIndicator />}
 					</div>
