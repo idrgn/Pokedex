@@ -100,6 +100,7 @@ export const PokemonDetail = (props) => {
 					<Button
 						sx={{ width: "100%" }}
 						variant="contained"
+						color="moves"
 						onClick={() => {
 							window.scrollTo(0, 0);
 							navigate(`/moves/${props.pokemon.name}`);
