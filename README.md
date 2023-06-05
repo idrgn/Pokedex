@@ -1,7 +1,6 @@
 <p align="center"><a href="http://pokedex.lekiam.net/"><img src="resources/logo.png"></a></p>
 
 <p align="center">Pokedex es una pequeña web que muestra datos de Pokémon, movimientos y objetos</p>
-<p align="center"><a href="http://pokedex.lekiam.net/">Visitar Pokedex</a></p>
 
 <p align="center">
  <img src="https://img.shields.io/github/languages/top/idrgn/Pokedex" alt="Top Language Badge"/>
@@ -12,6 +11,7 @@
 </p>
 
 <p align="center">
+ <a href="http://pokedex.lekiam.net/">Visitar Pokedex</a> •
  <a href="#descripción">Descripción</a> •
  <a href="#uso">Uso</a> •
  <a href="#créditos">Créditos</a> •
@@ -26,16 +26,29 @@ Proporciona los siguientes datos:
 
 - Pokémon:
   - Nombre
+  - Imagen
+  - Tipo(s)
   - Descripción
   - Habilidades
   - Estadísticas
+  - Tamaño
+  - Peso
+  - Movimientos
 - Movimientos
   - Nombre
   - Descripción
+  - Categoría de movimiento
+  - Tipo de movimiento
+  - Daño
+  - Usos
+  - Precisión
 - Objetos:
   - Nombre
+  - Imagen
   - Descripción
   - Precio
+
+También permite utilizar distintos filtros de búsqueda (por nombre, por tipo...).
 
 ## Uso
 
