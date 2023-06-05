@@ -3,11 +3,16 @@
 	left: 0px;
 	width: 100vw;
 	height: 100vh;
+}
 
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
+.main-page-content {
+	position: relative;
+	left: 50%;
+	top: 40%;
+	transform: translateX(-50%);
+	text-align: center;
+}
 
-	filter: blur(18px);
-	-webkit-filter: blur(18px);
+.main-page-separator {
+	height: 30px;
 }
