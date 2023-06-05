@@ -31,6 +31,13 @@ function App() {
 						<Route path="*" element={<NotFound />}></Route>
 					</Routes>
 				</div>
+
+				<div
+					className="background"
+					style={{
+						backgroundImage: `url(${process.env.PUBLIC_URL + "/background.jpg"})`,
+					}}
+				></div>
 			</div>
 		</ThemeProvider>
 	);
